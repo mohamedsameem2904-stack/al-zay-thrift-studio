@@ -17,6 +17,9 @@
             --color-accent: #d4ff3f;
             --color-accent-dark: #b8e62e;
             --color-accent-glow: rgba(212, 255, 63, 0.3);
+            --color-orange: #ff6b35;
+            --color-purple: #9b59b6;
+            --color-blue: #3498db;
             --font-display: 'Syne', sans-serif;
             --font-body: 'Space Grotesk', sans-serif;
         }
@@ -41,7 +44,7 @@
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar {
-            width: 8px;
+            width: 10px;
         }
 
         ::-webkit-scrollbar-track {
@@ -50,7 +53,36 @@
 
         ::-webkit-scrollbar-thumb {
             background: var(--color-accent);
-            border-radius: 4px;
+            border-radius: 5px;
+        }
+
+        /* Running Ticker */
+        .ticker-wrapper {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            padding: 0.5rem 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1001;
+        }
+
+        .ticker {
+            display: flex;
+            animation: ticker 20s linear infinite;
+            white-space: nowrap;
+        }
+
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         /* Welcome Modal */
@@ -120,8 +152,6 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
             animation: slideUp 1.4s ease;
         }
 
@@ -137,30 +167,18 @@
         }
 
         @keyframes slideDown {
-            from { 
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes slideUp {
-            from { 
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to { 
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Navigation */
         .navbar {
-            position: fixed;
+            position: sticky;
             top: 0;
             width: 100%;
             background: rgba(10, 10, 10, 0.95);
@@ -175,7 +193,7 @@
         }
 
         .navbar-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1rem 2rem;
             display: flex;
@@ -266,6 +284,27 @@
             animation: pulse 4s ease-in-out infinite;
         }
 
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--color-accent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-100px) rotate(180deg); }
+        }
+
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.1); }
@@ -289,6 +328,7 @@
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 2rem;
+            animation: slideUp 1s ease;
         }
 
         .hero-title {
@@ -297,7 +337,7 @@
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            animation: slideUp 1s ease;
+            animation: slideUp 1.2s ease;
         }
 
         .hero-title span {
@@ -308,14 +348,14 @@
             font-size: 1.2rem;
             color: var(--color-text-muted);
             margin-bottom: 2rem;
-            animation: slideUp 1.2s ease;
+            animation: slideUp 1.4s ease;
         }
 
         .hero-cta {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            animation: slideUp 1.4s ease;
+            animation: slideUp 1.6s ease;
         }
 
         .btn {
@@ -388,9 +428,9 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -401,6 +441,7 @@
             overflow: hidden;
             transition: all 0.3s;
             position: relative;
+            animation: fadeInUp 0.6s ease backwards;
         }
 
         .product-card:hover {
@@ -409,22 +450,34 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .product-image {
-            height: 350px;
+            height: 300px;
             background: var(--color-surface);
             position: relative;
             overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
+        .product-image i {
+            font-size: 8rem;
+            transition: all 0.5s;
         }
 
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
+        .product-card:hover .product-image i {
+            transform: scale(1.2) rotate(10deg);
         }
 
         .product-badge {
@@ -438,6 +491,7 @@
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
+            z-index: 2;
         }
 
         .product-info {
@@ -454,14 +508,14 @@
         }
 
         .product-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
         .product-description {
             color: var(--color-text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             margin-bottom: 1rem;
         }
 
@@ -661,10 +715,10 @@
         }
 
         .contact-grid {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 2rem;
         }
 
@@ -818,6 +872,28 @@
     </style>
 </head>
 <body>
+    <!-- Running Ticker -->
+    <div class="ticker-wrapper">
+        <div class="ticker">
+            <span class="ticker-item">🚚 FREE SHIPPING ON ALL ENQUIRIES</span>
+            <span class="ticker-item">✨ PREMIUM QUALITY T-SHIRTS</span>
+            <span class="ticker-item">🎨 UNIQUE DESIGNS</span>
+            <span class="ticker-item">💯 100% SATISFACTION GUARANTEED</span>
+            <span class="ticker-item">🌟 LIMITED EDITION COLLECTION</span>
+            <span class="ticker-item">🔥 NEW DESIGNS WEEKLY</span>
+            <span class="ticker-item">👕 PREMIUM COTTON FABRIC</span>
+            <span class="ticker-item">🎁 SPECIAL OFFERS FOR ENQUIRIES</span>
+            <span class="ticker-item">🚚 FREE SHIPPING ON ALL ENQUIRIES</span>
+            <span class="ticker-item">✨ PREMIUM QUALITY T-SHIRTS</span>
+            <span class="ticker-item">🎨 UNIQUE DESIGNS</span>
+            <span class="ticker-item">💯 100% SATISFACTION GUARANTEED</span>
+            <span class="ticker-item">🌟 LIMITED EDITION COLLECTION</span>
+            <span class="ticker-item">🔥 NEW DESIGNS WEEKLY</span>
+            <span class="ticker-item">👕 PREMIUM COTTON FABRIC</span>
+            <span class="ticker-item">🎁 SPECIAL OFFERS FOR ENQUIRIES</span>
+        </div>
+    </div>
+
     <!-- Welcome Modal -->
     <div class="welcome-modal" id="welcomeModal">
         <div class="welcome-content">
@@ -848,6 +924,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
+        <div class="hero-particles" id="particles"></div>
         <div class="hero-content">
             <div class="hero-badge">New Collection 2025</div>
             <h1 class="hero-title">Premium Printed <span>T-Shirts</span> for Men</h1>
@@ -871,78 +948,8 @@
                 Explore our handpicked selection of premium printed t-shirts for men
             </p>
         </div>
-        <div class="products-grid">
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="product-badge">New</div>
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
-                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #d4ff3f; opacity: 0.7;"></i>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Limited Edition</div>
-                    <h3 class="product-name">Urban Abstract Print Tee</h3>
-                    <p class="product-description">Modern abstract design on premium cotton blend. Available in multiple sizes.</p>
-                    <div class="product-actions">
-                        <button class="btn-enquire" onclick="openEnquiry('Urban Abstract Print Tee')">Enquire Now</button>
-                        <button class="btn-view" onclick="viewProduct('Urban Abstract Print Tee')">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="product-badge">Hot</div>
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
-                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #ff6b35; opacity: 0.7;"></i>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Best Seller</div>
-                    <h3 class="product-name">Geometric Pattern Tee</h3>
-                    <p class="product-description">Bold geometric patterns that make a statement. Ultra-soft fabric.</p>
-                    <div class="product-actions">
-                        <button class="btn-enquire" onclick="openEnquiry('Geometric Pattern Tee')">Enquire Now</button>
-                        <button class="btn-view" onclick="viewProduct('Geometric Pattern Tee')">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="product-badge">Premium</div>
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
-                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #6b8cae; opacity: 0.7;"></i>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">Premium Quality</div>
-                    <h3 class="product-name">Minimalist Line Art Tee</h3>
-                    <p class="product-description">Elegant minimalist designs for the modern man. Premium cotton.</p>
-                    <div class="product-actions">
-                        <button class="btn-enquire" onclick="openEnquiry('Minimalist Line Art Tee')">Enquire Now</button>
-                        <button class="btn-view" onclick="viewProduct('Minimalist Line Art Tee')">Details</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-image">
-                    <div class="product-badge">Trending</div>
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
-                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #9b59b6; opacity: 0.7;"></i>
-                    </div>
-                </div>
-                <div class="product-info">
-                    <div class="product-category">New Arrival</div>
-                    <h3 class="product-name">Vintage Typography Tee</h3>
-                    <p class="product-description">Retro-inspired typography designs. Soft and comfortable fit.</p>
-                    <div class="product-actions">
-                        <button class="btn-enquire" onclick="openEnquiry('Vintage Typography Tee')">Enquire Now</button>
-                        <button class="btn-view" onclick="viewProduct('Vintage Typography Tee')">Details</button>
-                    </div>
-                </div>
-            </div>
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will be dynamically generated -->
         </div>
     </section>
 
@@ -978,7 +985,7 @@
                 </div>
             </div>
             <div style="display: flex; align-items: center; justify-content: center;">
-                <div style="width: 100%; max-width: 400px; aspect-ratio: 1; background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid #d4ff3f;">
+                <div style="width: 100%; max-width: 400px; aspect-ratio: 1; background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid #d4ff3f; animation: pulse 3s ease-in-out infinite;">
                     <i class="fas fa-tshirt" style="font-size: 15rem; color: #d4ff3f; opacity: 0.5;"></i>
                 </div>
             </div>
@@ -1019,12 +1026,7 @@
                             <label for="product">Product Interest *</label>
                             <select id="product" name="product" required>
                                 <option value="">Select a product</option>
-                                <option value="Urban Abstract Print Tee">Urban Abstract Print Tee</option>
-                                <option value="Geometric Pattern Tee">Geometric Pattern Tee</option>
-                                <option value="Minimalist Line Art Tee">Minimalist Line Art Tee</option>
-                                <option value="Vintage Typography Tee">Vintage Typography Tee</option>
-                                <option value="Custom Design">Custom Design</option>
-                                <option value="Other">Other</option>
+                                <!-- Products will be dynamically added -->
                             </select>
                         </div>
                     </div>
@@ -1071,14 +1073,6 @@
                 <h3>Email</h3>
                 <p>info@alzaystudio.com</p>
                 <p>enquiries@alzaystudio.com</p>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">
-                    <i class="fas fa-map-marker-alt"></i>
-                </div>
-                <h3>Location</h3>
-                <p>123 Fashion Street</p>
-                <p>New York, NY 10001</p>
             </div>
             <div class="contact-card">
                 <div class="contact-icon">
@@ -1138,6 +1132,73 @@
     </footer>
 
     <script>
+        // Product Data
+        const products = [
+            { name: 'Urban Abstract Print Tee', category: 'Limited Edition', color: '#d4ff3f', description: 'Modern abstract design on premium cotton blend' },
+            { name: 'Geometric Pattern Tee', category: 'Best Seller', color: '#ff6b35', description: 'Bold geometric patterns that make a statement' },
+            { name: 'Minimalist Line Art Tee', category: 'Premium Quality', color: '#6b8cae', description: 'Elegant minimalist designs for the modern man' },
+            { name: 'Vintage Typography Tee', category: 'New Arrival', color: '#9b59b6', description: 'Retro-inspired typography designs' },
+            { name: 'Street Art Graphic Tee', category: 'Urban Collection', color: '#e74c3c', description: 'Bold street art inspired graphics' },
+            { name: 'Nature Inspired Tee', category: 'Eco Friendly', color: '#2ecc71', description: 'Beautiful nature-inspired designs on organic cotton' },
+            { name: 'Music Festival Tee', category: 'Limited Edition', color: '#f39c12', description: 'Vintage music festival inspired graphics' },
+            { name: 'Abstract Splash Tee', category: 'Artistic', color: '#3498db', description: 'Unique abstract splash art designs' },
+            { name: 'Tribal Pattern Tee', category: 'Cultural', color: '#e67e22', description: 'Traditional tribal patterns with modern twist' },
+            { name: 'Space Galaxy Tee', category: 'Cosmic', color: '#8e44ad', description: 'Stunning galaxy and space themed designs' },
+            { name: 'Skull Art Tee', category: 'Edgy', color: '#c0392b', description: 'Bold skull art designs for the daring' },
+            { name: 'Retro Wave Tee', category: 'Vintage', color: '#16a085', description: 'Synthwave and retro aesthetic designs' },
+            { name: 'Mandala Print Tee', category: 'Spiritual', color: '#27ae60', description: 'Intricate mandala patterns and designs' },
+            { name: 'Graffiti Style Tee', category: 'Streetwear', color: '#2980b9', description: 'Urban graffiti style art and typography' },
+            { name: 'Animal Kingdom Tee', category: 'Wildlife', color: '#d35400', description: 'Beautiful wildlife and animal inspired designs' },
+            { name: 'Typography Art Tee', category: 'Minimalist', color: '#34495e', description: 'Clean typography art and quotes' },
+            { name: 'Psychedelic Tee', category: 'Trippy', color: '#e74c3c', description: 'Mind-bending psychedelic patterns' },
+            { name: 'Patriotic Pride Tee', category: 'National', color: '#c0392b', description: 'Show your pride with patriotic designs' },
+            { name: 'Gamer Life Tee', category: 'Gaming', color: '#7f8c8d', description: 'Perfect for gaming enthusiasts' },
+            { name: 'Fitness Motivation Tee', category: 'Athletic', color: '#27ae60', description: 'Motivational designs for fitness lovers' }
+        ];
+
+        // Generate Products
+        function generateProducts() {
+            const productsGrid = document.getElementById('productsGrid');
+            const productSelect = document.getElementById('product');
+            
+            products.forEach((product, index) => {
+                // Create product card
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.style.animationDelay = `${index * 0.1}s`;
+                
+                // Determine badge
+                let badge = 'New';
+                if (index % 4 === 0) badge = 'Hot';
+                if (index % 3 === 0) badge = 'Premium';
+                if (index % 5 === 0) badge = 'Trending';
+                
+                card.innerHTML = `
+                    <div class="product-image">
+                        <div class="product-badge">${badge}</div>
+                        <i class="fas fa-tshirt" style="font-size: 8rem; color: ${product.color}; opacity: 0.7;"></i>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <p class="product-description">${product.description}</p>
+                        <div class="product-actions">
+                            <button class="btn-enquire" onclick="openEnquiry('${product.name}')">Enquire Now</button>
+                            <button class="btn-view" onclick="viewProduct('${product.name}', '${product.category}', '${product.description}')">Details</button>
+                        </div>
+                    </div>
+                `;
+                
+                productsGrid.appendChild(card);
+                
+                // Add to product select
+                const option = document.createElement('option');
+                option.value = product.name;
+                option.textContent = product.name;
+                productSelect.appendChild(option);
+            });
+        }
+
         // Close Welcome Modal
         function closeWelcome() {
             const modal = document.getElementById('welcomeModal');
@@ -1208,6 +1269,23 @@
             });
         });
 
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.width = `${Math.random() * 10 + 5}px`;
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+                particle.style.animationDelay = `${Math.random() * 4}s`;
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                particlesContainer.appendChild(particle);
+            }
+        }
+
         // Open enquiry with pre-filled product
         function openEnquiry(productName) {
             document.getElementById('product').value = productName;
@@ -1215,22 +1293,20 @@
                 behavior: 'smooth',
                 block: 'start'
             });
-            // Focus on name field after scroll
             setTimeout(() => {
                 document.getElementById('fullName').focus();
             }, 1000);
         }
 
         // View product details
-        function viewProduct(productName) {
-            alert(`Product Details:\n\n${productName}\n\nPremium quality men's printed t-shirt.\n\nFeatures:\n• 100% Premium Cotton\n• Unique Design\n• Available in multiple sizes\n• Machine washable\n• Color fast\n\nFor more information, please make an enquiry.`);
+        function viewProduct(name, category, description) {
+            alert(`Product Details:\n\n${name}\n\nCategory: ${category}\n\n${description}\n\nFeatures:\n• 100% Premium Cotton\n• Unique Design\n• Available in multiple sizes\n• Machine washable\n• Color fast\n\nFor more information, please make an enquiry.`);
         }
 
         // Submit enquiry form
         function submitEnquiry(event) {
             event.preventDefault();
             
-            // Get form values
             const formData = {
                 fullName: document.getElementById('fullName').value,
                 email: document.getElementById('email').value,
@@ -1240,27 +1316,23 @@
                 message: document.getElementById('message').value
             };
 
-            // Validate form data
             if (!formData.fullName || !formData.email || !formData.phone || !formData.product || !formData.message) {
                 alert('Please fill in all required fields.');
                 return;
             }
 
-            // Email validation
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(formData.email)) {
                 alert('Please enter a valid email address.');
                 return;
             }
 
-            // Phone validation
             const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
             if (!phoneRegex.test(formData.phone)) {
                 alert('Please enter a valid phone number.');
                 return;
             }
 
-            // Store enquiry in localStorage (for demo purposes)
             const enquiries = JSON.parse(localStorage.getItem('enquiries') || '[]');
             enquiries.push({
                 ...formData,
@@ -1268,38 +1340,25 @@
             });
             localStorage.setItem('enquiries', JSON.stringify(enquiries));
 
-            // Show success message
             const successMessage = document.getElementById('formSuccess');
             successMessage.classList.add('show');
 
-            // Reset form
             document.getElementById('enquiryForm').reset();
 
-            // Hide success message after 5 seconds
             setTimeout(() => {
                 successMessage.classList.remove('show');
             }, 5000);
 
-            // Log to console (for debugging)
             console.log('Enquiry Submitted:', formData);
             console.log('Total Enquiries:', enquiries.length);
         }
 
-        // Initialize product select with all options
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', () => {
-            const productSelect = document.getElementById('product');
-            const products = [
-                'Urban Abstract Print Tee',
-                'Geometric Pattern Tee',
-                'Minimalist Line Art Tee',
-                'Vintage Typography Tee',
-                'Custom Design',
-                'Other'
-            ];
-            
-            // Products are already in HTML, no need to re-populate
+            generateProducts();
+            createParticles();
             console.log('Al-Zay Thrift Studio - Website Loaded Successfully');
-            console.log('Enquiry-based system ready');
+            console.log('Total Products:', products.length);
         });
 
         // Prevent form double submission
