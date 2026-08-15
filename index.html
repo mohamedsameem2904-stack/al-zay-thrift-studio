@@ -3,24 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AL-ZAY THRIFT STUDIO | Futuristic Modest Fashion</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>AL-ZAY THRIFT STUDIO | Premium Men's Printed T-Shirts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         :root {
-            --primary-dark: #0a0a0f;
-            --secondary-dark: #12121a;
-            --accent-gold: #c9a96e;
-            --accent-silver: #d4d4dc;
-            --accent-blue: #6b8cae;
-            --text-primary: #f4f4f6;
-            --text-secondary: #a8a8b3;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-hover: rgba(255, 255, 255, 0.08);
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            --font-technical: 'Space Grotesk', sans-serif;
+            --color-bg: #0a0a0a;
+            --color-surface: #141414;
+            --color-card: #1e1e1e;
+            --color-border: #2a2a2a;
+            --color-text: #ffffff;
+            --color-text-muted: #888888;
+            --color-accent: #d4ff3f;
+            --color-accent-dark: #b8e62e;
+            --color-accent-glow: rgba(212, 255, 63, 0.3);
+            --font-display: 'Syne', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
         }
 
         * {
@@ -29,60 +27,243 @@
             box-sizing: border-box;
         }
 
-        body {
-            background: var(--primary-dark);
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+        html {
+            scroll-behavior: smooth;
         }
 
-        /* Welcome Page Overlay */
-        .welcome-overlay {
+        body {
+            background: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--color-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-accent);
+            border-radius: 4px;
+        }
+
+        /* Welcome Modal */
+        .welcome-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
-            z-index: 9999;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: welcomeFadeOut 0.8s ease-in-out 2.5s forwards;
+            animation: fadeIn 0.5s ease;
         }
 
-        @keyframes welcomeFadeOut {
-            to {
-                opacity: 0;
-                visibility: hidden;
-            }
+        .welcome-modal.hidden {
+            display: none;
         }
 
         .welcome-content {
             text-align: center;
-            max-width: 800px;
-            padding: 2rem;
-            animation: welcomeContentIn 1.5s ease-out;
+            padding: 3rem;
+            position: relative;
         }
 
-        @keyframes welcomeContentIn {
-            from {
+        .welcome-badge {
+            display: inline-block;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            padding: 0.5rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: slideDown 0.8s ease;
+        }
+
+        .welcome-title {
+            font-family: var(--font-display);
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: slideUp 1s ease;
+        }
+
+        .welcome-title span {
+            color: var(--color-accent);
+        }
+
+        .welcome-subtitle {
+            font-size: 1.2rem;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            animation: slideUp 1.2s ease;
+        }
+
+        .welcome-btn {
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border: none;
+            padding: 1rem 3rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 1.4s ease;
+        }
+
+        .welcome-btn:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--color-accent-glow);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { 
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-30px);
             }
-            to {
+            to { 
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .welcome-logo {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            color: var(--accent-gold);
-            animation: pulse 2s infinite;
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--color-border);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .navbar.scrolled {
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .navbar-logo span {
+            color: var(--color-accent);
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            color: var(--color-text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-accent);
+            transition: width 0.3s;
+        }
+
+        .navbar-menu a:hover::after,
+        .navbar-menu a.active::after {
+            width: 100%;
+        }
+
+        .navbar-menu a:hover,
+        .navbar-menu a.active {
+            color: var(--color-accent);
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--color-bg);
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 50% 50%, rgba(212, 255, 63, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
         }
 
         @keyframes pulse {
@@ -90,372 +271,147 @@
             50% { transform: scale(1.1); }
         }
 
-        .welcome-title {
-            font-family: var(--font-display);
-            font-size: 4.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #c9a96e, #f4f4f6, #c9a96e);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.05em;
-        }
-
-        .welcome-subtitle {
-            font-family: var(--font-technical);
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-        }
-
-        .welcome-line {
-            width: 100px;
-            height: 2px;
-            background: var(--accent-gold);
-            margin: 2rem auto;
-            animation: lineGrow 1.5s ease-out;
-        }
-
-        @keyframes lineGrow {
-            from { width: 0; opacity: 0; }
-            to { width: 100px; opacity: 1; }
-        }
-
-        /* Top Bar */
-        .top-bar {
-            background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a);
-            padding: 0.8rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            border-bottom: 1px solid rgba(201, 169, 110, 0.3);
-        }
-
-        .top-bar-left {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .top-bar-right {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .top-bar a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .top-bar a:hover {
-            color: var(--accent-gold);
-        }
-
-        /* Main Navigation */
-        .main-nav {
-            background: rgba(10, 10, 15, 0.95);
-            backdrop-filter: blur(20px);
-            padding: 1.5rem 4rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-logo {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-        }
-
-        .nav-logo span {
-            color: var(--accent-gold);
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-family: var(--font-technical);
-            font-size: 0.9rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            position: relative;
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent-gold);
-            transition: width 0.3s;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 1.5rem;
-            font-size: 1.2rem;
-        }
-
-        .nav-icons i {
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .nav-icons i:hover {
-            color: var(--accent-gold);
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #0a0a0f 70%);
-            padding: 4rem;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
         .hero-content {
+            text-align: center;
             position: relative;
             z-index: 2;
-            max-width: 700px;
+            max-width: 800px;
         }
 
         .hero-badge {
             display: inline-block;
-            background: rgba(201, 169, 110, 0.1);
-            border: 1px solid rgba(201, 169, 110, 0.3);
+            background: rgba(212, 255, 63, 0.1);
+            border: 1px solid var(--color-accent);
+            color: var(--color-accent);
             padding: 0.5rem 1.5rem;
-            font-family: var(--font-technical);
-            font-size: 0.85rem;
-            letter-spacing: 0.2em;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out;
         }
 
         .hero-title {
             font-family: var(--font-display);
             font-size: 5rem;
-            font-weight: 700;
+            font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out 0.2s backwards;
+            margin-bottom: 1.5rem;
+            animation: slideUp 1s ease;
         }
 
         .hero-title span {
-            color: var(--accent-gold);
+            color: var(--color-accent);
         }
 
         .hero-description {
             font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            line-height: 1.8;
-            animation: fadeInUp 1s ease-out 0.4s backwards;
+            color: var(--color-text-muted);
+            margin-bottom: 2rem;
+            animation: slideUp 1.2s ease;
         }
 
-        .hero-buttons {
+        .hero-cta {
             display: flex;
-            gap: 2rem;
-            animation: fadeInUp 1s ease-out 0.6s backwards;
+            gap: 1rem;
+            justify-content: center;
+            animation: slideUp 1.4s ease;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
         }
 
         .btn-primary {
-            background: var(--accent-gold);
-            color: var(--primary-dark);
-            padding: 1rem 2.5rem;
-            border: none;
-            font-family: var(--font-technical);
-            font-size: 0.9rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
+            background: var(--color-accent);
+            color: var(--color-bg);
         }
 
         .btn-primary:hover {
-            background: #d4b87e;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.3);
+            background: var(--color-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--color-accent-glow);
         }
 
-        .btn-secondary {
+        .btn-outline {
             background: transparent;
-            color: var(--text-primary);
-            padding: 1rem 2.5rem;
-            border: 1px solid var(--text-secondary);
-            font-family: var(--font-technical);
-            font-size: 0.9rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
         }
 
-        .btn-secondary:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
+        .btn-outline:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+            transform: translateY(-3px);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-image {
-            position: absolute;
-            right: 5%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 500px;
-            height: 600px;
-            background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
-            border-radius: 20px;
-            overflow: hidden;
-            border: 1px solid rgba(201, 169, 110, 0.2);
-            animation: float 6s ease-in-out infinite;
-            z-index: 1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(-50%) rotate(0deg); }
-            50% { transform: translateY(-55%) rotate(2deg); }
-        }
-
-        /* Stats Section */
-        .stats-section {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a, #1a1a1a);
-            padding: 4rem;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            border-top: 1px solid rgba(201, 169, 110, 0.2);
-            border-bottom: 1px solid rgba(201, 169, 110, 0.2);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: var(--font-display);
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--accent-gold);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            font-family: var(--font-technical);
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--text-secondary);
-        }
-
-        /* Featured Collection */
-        .featured-section {
-            padding: 6rem 4rem;
-            background: var(--primary-dark);
+        /* Products Section */
+        .products {
+            padding: 4rem 2rem;
+            background: var(--color-surface);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         .section-subtitle {
-            font-family: var(--font-technical);
+            color: var(--color-accent);
             font-size: 0.9rem;
-            letter-spacing: 0.3em;
+            font-weight: 600;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            color: var(--accent-gold);
             margin-bottom: 1rem;
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: 3rem;
+            font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 1rem;
         }
 
-        .section-divider {
-            width: 80px;
-            height: 3px;
-            background: var(--accent-gold);
-            margin: 2rem auto;
+        .section-description {
+            color: var(--color-text-muted);
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .product-grid {
+        .products-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .product-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
             border-radius: 12px;
             overflow: hidden;
-            transition: all 0.4s;
+            transition: all 0.3s;
             position: relative;
         }
 
         .product-card:hover {
             transform: translateY(-10px);
-            border-color: rgba(201, 169, 110, 0.3);
+            border-color: var(--color-accent);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .product-image {
             height: 350px;
-            background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+            background: var(--color-surface);
             position: relative;
             overflow: hidden;
         }
@@ -464,7 +420,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s;
+            transition: transform 0.5s;
         }
 
         .product-card:hover .product-image img {
@@ -474,193 +430,292 @@
         .product-badge {
             position: absolute;
             top: 1rem;
-            left: 1rem;
-            background: var(--accent-gold);
-            color: var(--primary-dark);
+            right: 1rem;
+            background: var(--color-accent);
+            color: var(--color-bg);
             padding: 0.5rem 1rem;
             font-size: 0.8rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            border-radius: 4px;
         }
 
         .product-info {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .product-category {
-            font-family: var(--font-technical);
+            color: var(--color-accent);
             font-size: 0.8rem;
-            letter-spacing: 0.2em;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            color: var(--accent-gold);
             margin-bottom: 0.5rem;
         }
 
         .product-name {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
             margin-bottom: 1rem;
         }
 
-        .product-price {
-            font-family: var(--font-technical);
-            font-size: 1.2rem;
-            color: var(--text-primary);
-            font-weight: 500;
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
         }
 
-        .product-price span {
-            text-decoration: line-through;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-right: 0.5rem;
+        .btn-enquire {
+            flex: 1;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border: none;
+            padding: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
         }
 
-        /* Sustainability Banner */
-        .sustainability-section {
-            background: linear-gradient(135deg, #1a1a2e, #0a0a0f);
-            padding: 6rem 4rem;
-            position: relative;
-            overflow: hidden;
+        .btn-enquire:hover {
+            background: var(--color-accent-dark);
         }
 
-        .sustainability-grid {
+        .btn-view {
+            background: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            padding: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .btn-view:hover {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: var(--color-bg);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
-        .sustainability-content h2 {
+        .about-content h2 {
             font-family: var(--font-display);
-            font-size: 3rem;
-            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
         }
 
-        .sustainability-content p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+        .about-content p {
+            color: var(--color-text-muted);
+            margin-bottom: 1rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
         }
 
-        .sustainability-features {
+        .about-stats {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
         }
 
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1.5rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .feature-item:hover {
-            border-color: var(--accent-gold);
-            background: var(--glass-hover);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--accent-gold);
-        }
-
-        .feature-text h3 {
-            font-family: var(--font-technical);
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .feature-text p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-
-        /* Newsletter Section */
-        .newsletter-section {
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            padding: 5rem 4rem;
+        .stat-item {
             text-align: center;
         }
 
-        .newsletter-form {
-            max-width: 500px;
-            margin: 3rem auto 0;
-            display: flex;
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--color-text-muted);
+        }
+
+        /* Enquiry Section */
+        .enquiry {
+            padding: 6rem 2rem;
+            background: var(--color-surface);
+        }
+
+        .enquiry-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .enquiry-form {
+            background: var(--color-card);
+            padding: 3rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            color: var(--color-text);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px var(--color-accent-glow);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
 
-        .newsletter-form input {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid var(--glass-border);
-            padding: 1rem 1.5rem;
-            color: var(--text-primary);
-            font-family: var(--font-body);
-            border-radius: 4px;
-            transition: all 0.3s;
-        }
-
-        .newsletter-form input:focus {
-            outline: none;
-            border-color: var(--accent-gold);
-            background: rgba(255, 255, 255, 0.08);
-        }
-
-        .newsletter-form button {
-            background: var(--accent-gold);
-            color: var(--primary-dark);
+        .form-submit {
+            width: 100%;
+            padding: 1rem;
+            background: var(--color-accent);
+            color: var(--color-bg);
             border: none;
-            padding: 1rem 2rem;
-            font-family: var(--font-technical);
+            font-size: 1rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 1px;
             text-transform: uppercase;
             cursor: pointer;
+            transition: all 0.3s;
             border-radius: 4px;
+        }
+
+        .form-submit:hover {
+            background: var(--color-accent-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px var(--color-accent-glow);
+        }
+
+        .form-success {
+            display: none;
+            background: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: slideDown 0.5s ease;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 4rem 2rem;
+            background: var(--color-bg);
+        }
+
+        .contact-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
             transition: all 0.3s;
         }
 
-        .newsletter-form button:hover {
-            background: #d4b87e;
+        .contact-card:hover {
+            border-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: var(--color-accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-card p {
+            color: var(--color-text-muted);
         }
 
         /* Footer */
         .footer {
-            background: #0a0a0f;
-            padding: 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--color-surface);
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--color-border);
         }
 
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+        .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
         }
 
         .footer-column h3 {
-            font-family: var(--font-technical);
-            font-size: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
             font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            color: var(--text-primary);
         }
 
         .footer-column ul {
@@ -668,26 +723,17 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
         .footer-column ul a {
-            color: var(--text-secondary);
+            color: var(--color-text-muted);
             text-decoration: none;
             transition: color 0.3s;
         }
 
         .footer-column ul a:hover {
-            color: var(--accent-gold);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--color-accent);
         }
 
         .social-links {
@@ -697,382 +743,360 @@
         }
 
         .social-links a {
-            color: var(--text-secondary);
+            color: var(--color-text-muted);
             font-size: 1.2rem;
             transition: color 0.3s;
         }
 
         .social-links a:hover {
-            color: var(--accent-gold);
+            color: var(--color-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .welcome-title {
-                font-size: 3rem;
-            }
-            
-            .main-nav {
+            .navbar-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--color-bg);
+                flex-direction: column;
                 padding: 1rem 2rem;
-                flex-wrap: wrap;
                 gap: 1rem;
+                border-bottom: 1px solid var(--color-border);
             }
-            
-            .nav-menu {
-                gap: 1.5rem;
-                flex-wrap: wrap;
+
+            .navbar-menu.show {
+                display: flex;
             }
-            
-            .hero {
-                padding: 2rem;
-                min-height: auto;
+
+            .navbar-toggle {
+                display: block;
             }
-            
+
             .hero-title {
                 font-size: 3rem;
             }
-            
-            .hero-image {
-                position: relative;
-                right: auto;
-                top: auto;
-                transform: none;
-                width: 100%;
-                height: 400px;
-                margin-top: 2rem;
-                animation: none;
-            }
-            
-            .stats-section {
-                grid-template-columns: repeat(2, 1fr);
-                padding: 2rem;
-            }
-            
-            .featured-section,
-            .sustainability-section,
-            .newsletter-section {
-                padding: 3rem 2rem;
-            }
-            
-            .sustainability-grid {
+
+            .about-container {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
-            .newsletter-form {
-                flex-direction: column;
-            }
-            
-            .footer {
-                padding: 2rem;
+
+            .form-row {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 480px) {
-            .welcome-title {
-                font-size: 2rem;
-            }
-            
             .hero-title {
                 font-size: 2.5rem;
             }
-            
-            .hero-buttons {
+
+            .hero-cta {
                 flex-direction: column;
-                gap: 1rem;
             }
-            
-            .stats-section {
+
+            .products-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .top-bar {
-                flex-direction: column;
-                gap: 0.5rem;
-                text-align: center;
-            }
-            
-            .top-bar-left,
-            .top-bar-right {
-                flex-direction: column;
-                gap: 0.5rem;
+
+            .about-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Welcome Page -->
-    <div class="welcome-overlay">
+    <!-- Welcome Modal -->
+    <div class="welcome-modal" id="welcomeModal">
         <div class="welcome-content">
-            <div class="welcome-logo">
-                <i class="fas fa-crown"></i>
-            </div>
-            <h1 class="welcome-title">Al-Zay Thrift</h1>
-            <p class="welcome-subtitle">Futuristic Modest Fashion</p>
-            <div class="welcome-line"></div>
-            <p style="color: var(--text-secondary); font-style: italic;">"Where Sustainability Meets Elegance"</p>
+            <div class="welcome-badge">Welcome to</div>
+            <h1 class="welcome-title">AL-ZAY <span>THRIFT STUDIO</span></h1>
+            <p class="welcome-subtitle">Premium Men's Printed T-Shirts Collection</p>
+            <button class="welcome-btn" onclick="closeWelcome()">Explore Collection</button>
         </div>
     </div>
 
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <span><i class="fas fa-phone"></i> +1 (555) 123-4567</span>
-            <span><i class="fas fa-envelope"></i> info@alzaythrift.com</span>
-        </div>
-        <div class="top-bar-right">
-            <a href="#"><i class="fas fa-truck"></i> Free Shipping Over $200</a>
-            <a href="#"><i class="fas fa-gift"></i> Gift Cards</a>
-            <a href="#"><i class="fas fa-globe"></i> EN</a>
-        </div>
-    </div>
-
-    <!-- Main Navigation -->
-    <nav class="main-nav">
-        <div class="nav-logo">AL-ZAY <span>THRIFT</span></div>
-        <ul class="nav-menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">New Arrivals</a></li>
-            <li><a href="#">Women</a></li>
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Accessories</a></li>
-            <li><a href="#">Sale</a></li>
-        </ul>
-        <div class="nav-icons">
-            <i class="fas fa-search"></i>
-            <i class="fas fa-user"></i>
-            <i class="fas fa-heart"></i>
-            <i class="fas fa-shopping-bag"></i>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">AL-ZAY <span>STUDIO</span></a>
+            <button class="navbar-toggle" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#products">Collection</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#enquiry">Enquiry</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
+        <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="hero-badge">Sustainable Collection 2025</div>
-            <h1 class="hero-title">Modest Fashion<br>for the <span>Future</span></h1>
+            <div class="hero-badge">New Collection 2025</div>
+            <h1 class="hero-title">Premium Printed <span>T-Shirts</span> for Men</h1>
             <p class="hero-description">
-                Discover curated thrift pieces that blend traditional elegance with futuristic aesthetics. 
-                Every item tells a story of sustainability and style.
+                Discover our exclusive collection of high-quality printed t-shirts. 
+                Unique designs, premium fabrics, and exceptional comfort.
             </p>
-            <div class="hero-buttons">
-                <button class="btn-primary" onclick="scrollToFeatured()">Shop Collection</button>
-                <button class="btn-secondary">Learn More</button>
+            <div class="hero-cta">
+                <a href="#products" class="btn btn-primary">View Collection</a>
+                <a href="#enquiry" class="btn btn-outline">Make Enquiry</a>
             </div>
         </div>
-        <div class="hero-image">
-            <svg width="100%" height="100%" viewBox="0 0 500 600" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
-                <defs>
-                    <linearGradient id="fabricGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style="stop-color:#c9a96e;stop-opacity:0.6"/>
-                        <stop offset="100%" style="stop-color:#6b8cae;stop-opacity:0.4"/>
-                    </linearGradient>
-                    <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                            <feMergeNode in="coloredBlur"/>
-                            <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                    </filter>
-                </defs>
-                <!-- Abstract Modest Fashion Figure -->
-                <ellipse cx="250" cy="500" rx="150" ry="50" fill="rgba(0,0,0,0.3)"/>
-                <path d="M250 150 Q270 100 290 150 L300 250 Q300 300 250 350 Q200 300 200 250 L210 150 Q230 100 250 150Z" fill="url(#fabricGradient)" opacity="0.8"/>
-                <path d="M230 200 Q250 180 270 200 L280 300 Q250 350 220 300Z" fill="rgba(200,200,220,0.3)"/>
-                <circle cx="250" cy="130" r="40" fill="#c9a96e" opacity="0.5" filter="url(#glow)"/>
-                <path d="M220 180 Q250 160 280 180" stroke="#c9a96e" stroke-width="2" fill="none" opacity="0.6"/>
-                <rect x="235" y="250" width="30" height="100" fill="rgba(201,169,110,0.2)" rx="5"/>
-                <circle cx="250" cy="220" r="5" fill="#fff" opacity="0.8"/>
-                <!-- Floating elements -->
-                <circle cx="100" cy="200" r="15" fill="rgba(255,255,255,0.1)"/>
-                <circle cx="400" cy="300" r="20" fill="rgba(201,169,110,0.2)"/>
-                <rect x="380" y="150" width="30" height="30" fill="rgba(255,255,255,0.1)" transform="rotate(45)"/>
-                <circle cx="350" cy="450" r="10" fill="rgba(107,140,174,0.3)"/>
-            </svg>
-        </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats-section">
-        <div class="stat-item">
-            <div class="stat-number">10K+</div>
-            <div class="stat-label">Happy Customers</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">5K+</div>
-            <div class="stat-label">Unique Pieces</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Sustainable</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">4.9/5</div>
-            <div class="stat-label">Customer Rating</div>
-        </div>
-    </section>
-
-    <!-- Featured Collection -->
-    <section class="featured-section" id="featured">
+    <!-- Products Section -->
+    <section class="products" id="products">
         <div class="section-header">
-            <div class="section-subtitle">Curated for You</div>
-            <h2 class="section-title">Featured Collection</h2>
-            <div class="section-divider"></div>
+            <div class="section-subtitle">Our Collection</div>
+            <h2 class="section-title">Featured T-Shirts</h2>
+            <p class="section-description">
+                Explore our handpicked selection of premium printed t-shirts for men
+            </p>
         </div>
-        <div class="product-grid">
+        <div class="products-grid">
             <div class="product-card">
                 <div class="product-image">
                     <div class="product-badge">New</div>
-                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
-                        <rect width="300" height="350" fill="none"/>
-                        <path d="M150 50 Q175 20 200 50 L220 150 Q200 200 150 220 Q100 200 80 150 L100 50 Q125 20 150 50Z" fill="rgba(201,169,110,0.3)"/>
-                        <path d="M130 100 Q150 80 170 100 L180 180 Q150 210 120 180Z" fill="rgba(255,255,255,0.2)"/>
-                        <circle cx="150" cy="120" r="30" fill="rgba(107,140,174,0.4)"/>
-                    </svg>
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
+                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #d4ff3f; opacity: 0.7;"></i>
+                    </div>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">Women's Wear</div>
-                    <div class="product-name">Futuristic Abaya</div>
-                    <div class="product-price"><span>$249</span> $199</div>
+                    <div class="product-category">Limited Edition</div>
+                    <h3 class="product-name">Urban Abstract Print Tee</h3>
+                    <p class="product-description">Modern abstract design on premium cotton blend. Available in multiple sizes.</p>
+                    <div class="product-actions">
+                        <button class="btn-enquire" onclick="openEnquiry('Urban Abstract Print Tee')">Enquire Now</button>
+                        <button class="btn-view" onclick="viewProduct('Urban Abstract Print Tee')">Details</button>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image">
-                    <div class="product-badge">Vintage</div>
-                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
-                        <rect width="300" height="350" fill="none"/>
-                        <path d="M150 60 Q180 30 210 60 L230 160 Q200 210 150 220 Q100 210 70 160 L90 60 Q120 30 150 60Z" fill="rgba(107,140,174,0.3)"/>
-                        <path d="M120 110 Q150 90 180 110 L190 180 Q150 220 110 180Z" fill="rgba(255,255,255,0.25)"/>
-                        <rect x="135" y="130" width="30" height="60" fill="rgba(201,169,110,0.3)"/>
-                    </svg>
+                    <div class="product-badge">Hot</div>
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
+                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #ff6b35; opacity: 0.7;"></i>
+                    </div>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">Accessories</div>
-                    <div class="product-name">Metallic Hijab</div>
-                    <div class="product-price"><span>$129</span> $99</div>
+                    <div class="product-category">Best Seller</div>
+                    <h3 class="product-name">Geometric Pattern Tee</h3>
+                    <p class="product-description">Bold geometric patterns that make a statement. Ultra-soft fabric.</p>
+                    <div class="product-actions">
+                        <button class="btn-enquire" onclick="openEnquiry('Geometric Pattern Tee')">Enquire Now</button>
+                        <button class="btn-view" onclick="viewProduct('Geometric Pattern Tee')">Details</button>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image">
-                    <div class="product-badge">Limited</div>
-                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
-                        <rect width="300" height="350" fill="none"/>
-                        <path d="M150 70 Q180 40 200 70 L220 170 Q190 220 150 230 Q110 220 80 170 L100 70 Q120 40 150 70Z" fill="rgba(201,169,110,0.4)"/>
-                        <path d="M130 120 Q150 100 170 120 L180 190 Q150 230 120 190Z" fill="rgba(255,255,255,0.15)"/>
-                        <circle cx="150" cy="130" r="25" fill="rgba(107,140,174,0.5)"/>
-                    </svg>
+                    <div class="product-badge">Premium</div>
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
+                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #6b8cae; opacity: 0.7;"></i>
+                    </div>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">Men's Wear</div>
-                    <div class="product-name">Neo-Thobe</div>
-                    <div class="product-price"><span>$299</span> $249</div>
+                    <div class="product-category">Premium Quality</div>
+                    <h3 class="product-name">Minimalist Line Art Tee</h3>
+                    <p class="product-description">Elegant minimalist designs for the modern man. Premium cotton.</p>
+                    <div class="product-actions">
+                        <button class="btn-enquire" onclick="openEnquiry('Minimalist Line Art Tee')">Enquire Now</button>
+                        <button class="btn-view" onclick="viewProduct('Minimalist Line Art Tee')">Details</button>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
                 <div class="product-image">
-                    <div class="product-badge">Sale</div>
-                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
-                        <rect width="300" height="350" fill="none"/>
-                        <path d="M150 40 Q185 10 210 40 L240 140 Q210 190 150 200 Q90 190 60 140 L90 40 Q115 10 150 40Z" fill="rgba(107,140,174,0.4)"/>
-                        <path d="M125 90 Q150 70 175 90 L185 160 Q150 200 115 160Z" fill="rgba(255,255,255,0.2)"/>
-                        <rect x="140" y="120" width="20" height="50" fill="rgba(201,169,110,0.4)"/>
-                    </svg>
+                    <div class="product-badge">Trending</div>
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #2a2a2a, #1a1a1a);">
+                        <i class="fas fa-tshirt" style="font-size: 8rem; color: #9b59b6; opacity: 0.7;"></i>
+                    </div>
                 </div>
                 <div class="product-info">
-                    <div class="product-category">Outerwear</div>
-                    <div class="product-name">Futuristic Kimono</div>
-                    <div class="product-price"><span>$349</span> $279</div>
+                    <div class="product-category">New Arrival</div>
+                    <h3 class="product-name">Vintage Typography Tee</h3>
+                    <p class="product-description">Retro-inspired typography designs. Soft and comfortable fit.</p>
+                    <div class="product-actions">
+                        <button class="btn-enquire" onclick="openEnquiry('Vintage Typography Tee')">Enquire Now</button>
+                        <button class="btn-view" onclick="viewProduct('Vintage Typography Tee')">Details</button>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Sustainability Section -->
-    <section class="sustainability-section">
-        <div class="sustainability-grid">
-            <div class="sustainability-content">
-                <div class="section-subtitle">Our Commitment</div>
-                <h2>Sustainable Fashion<br>for Tomorrow</h2>
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <div class="section-subtitle">About Us</div>
+                <h2>Premium Quality Men's T-Shirts</h2>
                 <p>
-                    At Al-Zay Thrift Studio, we believe in fashion that respects both people and planet. 
-                    Our unique thrift model gives pre-loved garments a second life, reducing waste and 
-                    promoting circular fashion.
+                    At Al-Zay Thrift Studio, we specialize in curating the finest printed t-shirts for men. 
+                    Our collection features unique designs that combine comfort with style, ensuring you 
+                    always look your best.
                 </p>
-                <div class="sustainability-features">
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-recycle"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h3>Upcycled Materials</h3>
-                            <p>Giving new life to quality fabrics</p>
-                        </div>
+                <p>
+                    Each piece in our collection is carefully selected for its quality, design, and comfort. 
+                    We work with skilled artisans and use premium materials to bring you t-shirts that 
+                    stand the test of time.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Unique Designs</div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h3>Zero Waste</h3>
-                            <p>Minimal environmental impact</p>
-                        </div>
+                    <div class="stat-item">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Happy Customers</div>
                     </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h3>Ethical Sourcing</h3>
-                            <p>Fair practices throughout</p>
-                        </div>
-                    </div>
-                    <div class="feature-item">
-                        <div class="feature-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="feature-text">
-                            <h3>Carbon Neutral</h3>
-                            <p>Offsetting our footprint</p>
-                        </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Quality Guaranteed</div>
                     </div>
                 </div>
             </div>
-            <div>
-                <svg width="100%" height="400" viewBox="0 0 500 400" style="background: linear-gradient(135deg, #1a1a2e, #0a0a0f); border-radius: 12px;">
-                    <circle cx="250" cy="200" r="150" fill="none" stroke="rgba(201,169,110,0.3)" stroke-width="2"/>
-                    <circle cx="250" cy="200" r="120" fill="none" stroke="rgba(107,140,174,0.3)" stroke-width="2"/>
-                    <circle cx="250" cy="200" r="90" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-                    <path d="M250 50 L250 350 M100 200 L400 200" stroke="rgba(201,169,110,0.2)" stroke-width="1"/>
-                    <text x="250" y="100" text-anchor="middle" fill="#c9a96e" font-size="20" font-family="Space Grotesk">SUSTAINABLE</text>
-                    <text x="250" y="200" text-anchor="middle" fill="#6b8cae" font-size="16" font-family="Space Grotesk">CIRCULAR</text>
-                    <text x="250" y="300" text-anchor="middle" fill="#ffffff" font-size="14" font-family="Space Grotesk">FASHION</text>
-                    <circle cx="250" cy="200" r="10" fill="#c9a96e"/>
-                </svg>
+            <div style="display: flex; align-items: center; justify-content: center;">
+                <div style="width: 100%; max-width: 400px; aspect-ratio: 1; background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid #d4ff3f;">
+                    <i class="fas fa-tshirt" style="font-size: 15rem; color: #d4ff3f; opacity: 0.5;"></i>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <div class="section-subtitle">Stay Connected</div>
-        <h2 class="section-title" style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem;">Join Our Newsletter</h2>
-        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">
-            Subscribe to receive exclusive offers, new arrivals, and sustainable fashion tips.
-        </p>
-        <form class="newsletter-form" id="newsletterForm">
-            <input type="email" placeholder="Enter your email address" required>
-            <button type="submit">Subscribe</button>
-        </form>
+    <!-- Enquiry Section -->
+    <section class="enquiry" id="enquiry">
+        <div class="enquiry-container">
+            <div class="section-header">
+                <div class="section-subtitle">Get in Touch</div>
+                <h2 class="section-title">Make an Enquiry</h2>
+                <p class="section-description">
+                    Interested in our t-shirts? Fill out the form below and we'll get back to you within 24 hours.
+                </p>
+            </div>
+            <div class="enquiry-form">
+                <div class="form-success" id="formSuccess">
+                    <i class="fas fa-check-circle"></i> Thank you! Your enquiry has been submitted successfully.
+                </div>
+                <form id="enquiryForm" onsubmit="submitEnquiry(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Full Name *</label>
+                            <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="product">Product Interest *</label>
+                            <select id="product" name="product" required>
+                                <option value="">Select a product</option>
+                                <option value="Urban Abstract Print Tee">Urban Abstract Print Tee</option>
+                                <option value="Geometric Pattern Tee">Geometric Pattern Tee</option>
+                                <option value="Minimalist Line Art Tee">Minimalist Line Art Tee</option>
+                                <option value="Vintage Typography Tee">Vintage Typography Tee</option>
+                                <option value="Custom Design">Custom Design</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="size">Preferred Size</label>
+                        <select id="size" name="size">
+                            <option value="">Select size (optional)</option>
+                            <option value="S">Small (S)</option>
+                            <option value="M">Medium (M)</option>
+                            <option value="L">Large (L)</option>
+                            <option value="XL">Extra Large (XL)</option>
+                            <option value="XXL">Double XL (XXL)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your requirements or any specific design preferences..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Submit Enquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-header">
+            <div class="section-subtitle">Contact Us</div>
+            <h2 class="section-title">Get in Touch</h2>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <h3>Phone</h3>
+                <p>+1 (555) 123-4567</p>
+                <p>Mon-Sat, 9am-7pm</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>info@alzaystudio.com</p>
+                <p>enquiries@alzaystudio.com</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Location</h3>
+                <p>123 Fashion Street</p>
+                <p>New York, NY 10001</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Business Hours</h3>
+                <p>Monday - Friday: 9am - 7pm</p>
+                <p>Saturday: 10am - 5pm</p>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-grid">
+        <div class="footer-content">
             <div class="footer-column">
-                <h3>Al-Zay Thrift</h3>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
-                    Futuristic modest fashion with a sustainable heart. Every piece tells a story.
-                </p>
+                <h3>Al-Zay Thrift Studio</h3>
+                <p style="color: #888; margin-bottom: 1rem;">Premium men's printed t-shirts for the modern gentleman.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook"></i></a>
@@ -1083,207 +1107,212 @@
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Collection</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#enquiry">Enquiry</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Our Products</h3>
+                <ul>
+                    <li><a href="#products">Printed T-Shirts</a></li>
+                    <li><a href="#products">Custom Designs</a></li>
+                    <li><a href="#products">Limited Editions</a></li>
+                    <li><a href="#products">Premium Collection</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Support</h3>
+                <ul>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#enquiry">Make Enquiry</a></li>
                     <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Shipping Info</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Categories</h3>
-                <ul>
-                    <li><a href="#">Women's Wear</a></li>
-                    <li><a href="#">Men's Wear</a></li>
-                    <li><a href="#">Accessories</a></li>
-                    <li><a href="#">Sale Items</a></li>
-                </ul>
-            </div>
-            <div class="footer-column">
-                <h3>Customer Service</h3>
-                <ul>
-                    <li><a href="#">Track Order</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">Size Guide</a></li>
                     <li><a href="#">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Al-Zay Thrift Studio. All rights reserved. | Designed with ❤ for sustainable fashion</p>
+            <p>&copy; 2025 Al-Zay Thrift Studio. All rights reserved. | Designed with ❤️ for fashion</p>
         </div>
     </footer>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Close Welcome Modal
+        function closeWelcome() {
+            const modal = document.getElementById('welcomeModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Prevent body scroll when welcome modal is open
+        document.body.style.overflow = 'hidden';
+
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const menu = document.getElementById('navMenu');
+            menu.classList.toggle('show');
+        }
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.navbar-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                const menu = document.getElementById('navMenu');
+                menu.classList.remove('show');
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const targetId = this.getAttribute('href');
-                if (targetId && targetId !== '#') {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        e.preventDefault();
-                        targetElement.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                } else {
-                    e.preventDefault();
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
                     });
                 }
             });
         });
 
-        // Function to scroll to featured section
-        function scrollToFeatured() {
-            const featuredSection = document.getElementById('featured');
-            if (featuredSection) {
-                featuredSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        }
+        // Active link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.navbar-menu a');
 
-        // Newsletter form submission
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const emailInput = this.querySelector('input[type="email"]');
-            if (emailInput.value) {
-                alert('Thank you for subscribing! Welcome to the Al-Zay community.');
-                emailInput.value = '';
-            }
-        });
-
-        // Add to cart functionality
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const productName = this.querySelector('.product-name').textContent;
-                const productPrice = this.querySelector('.product-price').textContent;
-                console.log(`Added to cart: ${productName} - ${productPrice}`);
-                // You can add cart functionality here
-            });
-        });
-
-        // Initialize cart count
-        let cartCount = 0;
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.style.cursor = 'pointer';
-        });
-
-        // Mobile menu toggle
-        const navMenu = document.querySelector('.nav-menu');
-        const navToggle = document.createElement('button');
-        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        navToggle.style.cssText = `
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        `;
-
-        document.querySelector('.main-nav').insertBefore(navToggle, document.querySelector('.nav-icons'));
-
-        navToggle.addEventListener('click', function() {
-            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
-        });
-
-        // Responsive menu handling
-        function handleResize() {
-            if (window.innerWidth <= 768) {
-                navToggle.style.display = 'block';
-                navMenu.style.display = 'none';
-                navMenu.style.flexDirection = 'column';
-                navMenu.style.width = '100%';
-                navMenu.style.padding = '1rem 0';
-            } else {
-                navToggle.style.display = 'none';
-                navMenu.style.display = 'flex';
-                navMenu.style.flexDirection = 'row';
-            }
-        }
-
-        window.addEventListener('resize', handleResize);
-        handleResize();
-
-        // Lazy loading animation for product cards
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
                 }
             });
-        }, observerOptions);
 
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
-        });
-
-        // Smooth scroll to top button
-        const scrollTopBtn = document.createElement('button');
-        scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
-        scrollTopBtn.style.cssText = `
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--accent-gold);
-            color: var(--primary-dark);
-            border: none;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            z-index: 1000;
-            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
-            transition: all 0.3s;
-        `;
-
-        scrollTopBtn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-5px)';
-            this.style.boxShadow = '0 6px 20px rgba(201, 169, 110, 0.5)';
-        });
-
-        scrollTopBtn.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0)';
-            this.style.boxShadow = '0 4px 15px rgba(201, 169, 110, 0.3)';
-        });
-
-        scrollTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
             });
         });
 
-        document.body.appendChild(scrollTopBtn);
+        // Open enquiry with pre-filled product
+        function openEnquiry(productName) {
+            document.getElementById('product').value = productName;
+            document.getElementById('enquiry').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+            // Focus on name field after scroll
+            setTimeout(() => {
+                document.getElementById('fullName').focus();
+            }, 1000);
+        }
 
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 500) {
-                scrollTopBtn.style.display = 'flex';
-            } else {
-                scrollTopBtn.style.display = 'none';
+        // View product details
+        function viewProduct(productName) {
+            alert(`Product Details:\n\n${productName}\n\nPremium quality men's printed t-shirt.\n\nFeatures:\n• 100% Premium Cotton\n• Unique Design\n• Available in multiple sizes\n• Machine washable\n• Color fast\n\nFor more information, please make an enquiry.`);
+        }
+
+        // Submit enquiry form
+        function submitEnquiry(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                product: document.getElementById('product').value,
+                size: document.getElementById('size').value,
+                message: document.getElementById('message').value
+            };
+
+            // Validate form data
+            if (!formData.fullName || !formData.email || !formData.phone || !formData.product || !formData.message) {
+                alert('Please fill in all required fields.');
+                return;
             }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(formData.email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            // Phone validation
+            const phoneRegex = /^[\d\s\-\+\(\)]{10,}$/;
+            if (!phoneRegex.test(formData.phone)) {
+                alert('Please enter a valid phone number.');
+                return;
+            }
+
+            // Store enquiry in localStorage (for demo purposes)
+            const enquiries = JSON.parse(localStorage.getItem('enquiries') || '[]');
+            enquiries.push({
+                ...formData,
+                timestamp: new Date().toISOString()
+            });
+            localStorage.setItem('enquiries', JSON.stringify(enquiries));
+
+            // Show success message
+            const successMessage = document.getElementById('formSuccess');
+            successMessage.classList.add('show');
+
+            // Reset form
+            document.getElementById('enquiryForm').reset();
+
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+
+            // Log to console (for debugging)
+            console.log('Enquiry Submitted:', formData);
+            console.log('Total Enquiries:', enquiries.length);
+        }
+
+        // Initialize product select with all options
+        document.addEventListener('DOMContentLoaded', () => {
+            const productSelect = document.getElementById('product');
+            const products = [
+                'Urban Abstract Print Tee',
+                'Geometric Pattern Tee',
+                'Minimalist Line Art Tee',
+                'Vintage Typography Tee',
+                'Custom Design',
+                'Other'
+            ];
+            
+            // Products are already in HTML, no need to re-populate
+            console.log('Al-Zay Thrift Studio - Website Loaded Successfully');
+            console.log('Enquiry-based system ready');
         });
 
-        console.log('Al-Zay Thrift Studio - Premium E-Commerce Experience Loaded Successfully');
+        // Prevent form double submission
+        let isSubmitting = false;
+        const originalSubmit = submitEnquiry;
+        submitEnquiry = function(event) {
+            if (isSubmitting) return;
+            isSubmitting = true;
+            originalSubmit(event);
+            setTimeout(() => {
+                isSubmitting = false;
+            }, 2000);
+        };
     </script>
 </body>
 </html>
