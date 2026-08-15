@@ -553,8 +553,8 @@
 
         .btn-enquire {
             flex: 1;
-            background: #25D366;
-            color: white;
+            background: var(--color-accent);
+            color: var(--color-bg);
             border: none;
             padding: 0.5rem;
             font-weight: 600;
@@ -572,7 +572,7 @@
         }
 
         .btn-enquire:hover {
-            background: #128C7E;
+            background: var(--color-accent-dark);
         }
 
         .btn-enquire i {
@@ -871,7 +871,6 @@
             font-size: 0.85rem;
         }
 
-        /* Modal for FAQ and Privacy Policy */
         .info-modal {
             display: none;
             position: fixed;
@@ -1104,7 +1103,6 @@
     </style>
 </head>
 <body class="theme-dark">
-    <!-- Running Ticker -->
     <div class="ticker-wrapper">
         <div class="ticker">
             <span class="ticker-item">🚚 FREE SHIPPING ON ALL ENQUIRIES</span>
@@ -1126,7 +1124,6 @@
         </div>
     </div>
 
-    <!-- Welcome Modal -->
     <div class="welcome-modal" id="welcomeModal">
         <div class="welcome-content">
             <div class="welcome-badge">AL-ZAY STUDIO</div>
@@ -1136,7 +1133,6 @@
         </div>
     </div>
 
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="#" class="navbar-logo">AL-ZAY <span>STUDIO</span></a>
@@ -1153,7 +1149,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-grid"></div>
         <div class="hero-content">
@@ -1170,7 +1165,6 @@
         </div>
     </section>
 
-    <!-- Products Section -->
     <section class="products" id="products">
         <div class="section-header">
             <div class="section-subtitle">Our Collection</div>
@@ -1179,12 +1173,9 @@
                 Explore our handpicked selection of premium printed t-shirts for men
             </p>
         </div>
-        <div class="products-grid" id="productsGrid">
-            <!-- Products will be dynamically generated -->
-        </div>
+        <div class="products-grid" id="productsGrid"></div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="about-container">
             <div class="about-content">
@@ -1223,7 +1214,6 @@
         </div>
     </section>
 
-    <!-- Enquiry Section -->
     <section class="enquiry" id="enquiry">
         <div class="enquiry-container">
             <div class="section-header">
@@ -1281,7 +1271,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="section-header">
             <div class="section-subtitle">Contact Us</div>
@@ -1315,7 +1304,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-column">
@@ -1361,25 +1349,20 @@
         </div>
     </footer>
 
-    <!-- Info Modal for FAQ and Privacy Policy -->
     <div class="info-modal" id="infoModal">
         <div class="info-modal-content">
             <button class="info-modal-close" onclick="closeInfoModal()">
                 <i class="fas fa-times"></i>
             </button>
-            <div id="infoModalBody">
-                <!-- Content will be populated dynamically -->
-            </div>
+            <div id="infoModalBody"></div>
         </div>
     </div>
 
-    <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
         <i class="fas fa-moon" id="themeIcon"></i>
     </button>
 
     <script>
-        // Product Data with exact images
         const products = [
             { name: 'Urban Abstract Print Tee', category: 'Limited Edition', image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop', description: 'Modern abstract design' },
             { name: 'Geometric Pattern Tee', category: 'Best Seller', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop', description: 'Bold geometric patterns' },
@@ -1403,10 +1386,8 @@
             { name: 'Fitness Motivation Tee', category: 'Athletic', image: 'https://images.unsplash.com/photo-1533055640609-24b498dfd74c?w=400&h=400&fit=crop', description: 'Motivational designs' }
         ];
 
-        // WhatsApp number
         const whatsappNumber = '917094710286';
 
-        // Generate Products
         function generateProducts() {
             const productsGrid = document.getElementById('productsGrid');
             const productSelect = document.getElementById('product');
@@ -1448,7 +1429,6 @@
             });
         }
 
-        // Close Welcome Modal
         function closeWelcome() {
             const modal = document.getElementById('welcomeModal');
             modal.classList.add('hidden');
@@ -1457,7 +1437,6 @@
 
         document.body.style.overflow = 'hidden';
 
-        // Toggle Mobile Menu
         function toggleMenu() {
             const menu = document.getElementById('navMenu');
             menu.classList.toggle('show');
@@ -1470,7 +1449,6 @@
             });
         });
 
-        // Toggle Theme
         function toggleTheme() {
             const body = document.body;
             const icon = document.getElementById('themeIcon');
@@ -1486,7 +1464,6 @@
             }
         }
 
-        // Navbar scroll effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 100) {
@@ -1496,7 +1473,6 @@
             }
         });
 
-        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1510,7 +1486,6 @@
             });
         });
 
-        // Active link highlighting
         const sections = document.querySelectorAll('section');
         const navLinks = document.querySelectorAll('.navbar-menu a');
 
@@ -1531,19 +1506,16 @@
             });
         });
 
-        // Open enquiry (now redirects to WhatsApp)
         function openEnquiry(productName) {
             const message = `Hey Al Zay, I have an enquiry about ${productName}`;
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         }
 
-        // View product details
         function viewProduct(name, category, description) {
             alert(`Product Details:\n\n${name}\n\nCategory: ${category}\n\n${description}\n\nFeatures:\n• 100% Premium Cotton\n• Unique Design\n• Available in multiple sizes\n• Machine washable\n• Color fast\n\nFor more information, please make an enquiry.`);
         }
 
-        // Submit enquiry form
         function submitEnquiry(event) {
             event.preventDefault();
             
@@ -1573,11 +1545,9 @@
                 return;
             }
 
-            // Send to WhatsApp
             const whatsappMessage = `Hey Al Zay, I have an enquiry!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nProduct: ${formData.product}\nSize: ${formData.size || 'Not specified'}\nMessage: ${formData.message}`;
             const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
             
-            // Open WhatsApp
             window.open(whatsappUrl, '_blank');
 
             const enquiries = JSON.parse(localStorage.getItem('enquiries') || '[]');
@@ -1599,7 +1569,6 @@
             console.log('Enquiry Submitted:', formData);
         }
 
-        // Show FAQ Modal
         function showFAQ() {
             const modal = document.getElementById('infoModal');
             const modalBody = document.getElementById('infoModalBody');
@@ -1635,7 +1604,6 @@
             modal.classList.add('show');
         }
 
-        // Show Privacy Policy Modal
         function showPrivacyPolicy() {
             const modal = document.getElementById('infoModal');
             const modalBody = document.getElementById('infoModalBody');
@@ -1680,20 +1648,17 @@
             modal.classList.add('show');
         }
 
-        // Close Info Modal
         function closeInfoModal() {
             const modal = document.getElementById('infoModal');
             modal.classList.remove('show');
         }
 
-        // Close modal when clicking outside
         document.getElementById('infoModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeInfoModal();
             }
         });
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             generateProducts();
             console.log('Al-Zay Thrift Studio - Website Loaded Successfully');
