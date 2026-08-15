@@ -1,749 +1,1289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Al-Zay Thrift Studio | Futuristic Modest Fashion</title>
-  <!-- Google Fonts: Clean sans-serif + futuristic accents -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Font Awesome for subtle icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-ZAY THRIFT STUDIO | Futuristic Modest Fashion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-dark: #0a0a0f;
+            --secondary-dark: #12121a;
+            --accent-gold: #c9a96e;
+            --accent-silver: #d4d4dc;
+            --accent-blue: #6b8cae;
+            --text-primary: #f4f4f6;
+            --text-secondary: #a8a8b3;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-hover: rgba(255, 255, 255, 0.08);
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-technical: 'Space Grotesk', sans-serif;
+        }
 
-    :root {
-      --bg-deep: #0b0e14;
-      --bg-glow: #121826;
-      --glass-bg: rgba(20, 25, 35, 0.55);
-      --glass-border: rgba(255, 255, 255, 0.15);
-      --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      --text-primary: #f0f2f5;
-      --text-secondary: #b8c0cc;
-      --holographic-1: #a0e9ff;
-      --holographic-2: #c1b3ff;
-      --holographic-3: #9effd0;
-      --accent-metallic: #b8c7d9;
-      --accent-neon: #d4b8ff;
-      --font-main: 'Inter', sans-serif;
-      --font-display: 'Space Grotesk', sans-serif;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      background-color: var(--bg-deep);
-      background-image: radial-gradient(circle at 20% 30%, rgba(100, 120, 180, 0.15) 0%, transparent 30%),
-                        radial-gradient(circle at 80% 70%, rgba(160, 233, 255, 0.08) 0%, transparent 40%),
-                        linear-gradient(145deg, #0b0e14 0%, #141b2b 100%);
-      color: var(--text-primary);
-      font-family: var(--font-main);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      overflow-x: hidden;
-    }
+        body {
+            background: var(--primary-dark);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    /* main container with glassmorphism + futuristic border */
-    .site-wrapper {
-      width: 100%;
-      max-width: 1600px;
-      margin: 0 auto;
-      padding: 1.8rem 3rem 3rem;
-      position: relative;
-    }
+        /* Welcome Page Overlay */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: welcomeFadeOut 0.8s ease-in-out 2.5s forwards;
+        }
 
-    /* ---- WELCOME PAGE (initial landing overlay / modal feel) ---- */
-    .welcome-overlay {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: rgba(8, 10, 16, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-radius: 2.5rem;
-      margin-bottom: 2.5rem;
-      padding: 3rem 2.5rem;
-      border: 1px solid var(--glass-border);
-      box-shadow: var(--glass-shadow), 0 0 60px rgba(160, 233, 255, 0.15);
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
+        @keyframes welcomeFadeOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
 
-    .welcome-overlay::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, rgba(160,233,255,0.08) 0%, rgba(193,179,255,0.05) 50%, rgba(158,255,208,0.08) 100%);
-      pointer-events: none;
-    }
+        .welcome-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            animation: welcomeContentIn 1.5s ease-out;
+        }
 
-    .welcome-content {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      z-index: 2;
-      gap: 2rem;
-    }
+        @keyframes welcomeContentIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .welcome-left {
-      flex: 1 1 300px;
-    }
+        .welcome-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            animation: pulse 2s infinite;
+        }
 
-    .welcome-greeting {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
-      color: var(--holographic-2);
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
 
-    .welcome-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 3.5rem;
-      line-height: 1.1;
-      background: linear-gradient(135deg, #ffffff, #cfe9ff, #d9ccff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 0.8rem;
-    }
+        .welcome-title {
+            font-family: var(--font-display);
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #c9a96e, #f4f4f6, #c9a96e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.05em;
+        }
 
-    .welcome-text {
-      color: var(--text-secondary);
-      font-weight: 300;
-      font-size: 1.2rem;
-      max-width: 500px;
-    }
+        .welcome-subtitle {
+            font-family: var(--font-technical);
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
 
-    .welcome-badge {
-      display: inline-block;
-      background: var(--glass-bg);
-      border: 1px solid rgba(180, 200, 255, 0.4);
-      backdrop-filter: blur(8px);
-      padding: 0.4rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      color: var(--holographic-1);
-      letter-spacing: 1px;
-      margin-top: 1rem;
-    }
+        .welcome-line {
+            width: 100px;
+            height: 2px;
+            background: var(--accent-gold);
+            margin: 2rem auto;
+            animation: lineGrow 1.5s ease-out;
+        }
 
-    .welcome-right {
-      flex: 0 0 auto;
-    }
+        @keyframes lineGrow {
+            from { width: 0; opacity: 0; }
+            to { width: 100px; opacity: 1; }
+        }
 
-    .welcome-btn {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.25);
-      backdrop-filter: blur(10px);
-      color: #fff;
-      padding: 1rem 2.5rem;
-      border-radius: 60px;
-      font-weight: 500;
-      font-family: var(--font-main);
-      font-size: 1.1rem;
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      box-shadow: 0 0 20px rgba(180,200,240,0.2);
-    }
+        /* Top Bar */
+        .top-bar {
+            background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a);
+            padding: 0.8rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+        }
 
-    .welcome-btn:hover {
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(200,220,255,0.6);
-      box-shadow: 0 0 35px rgba(180,200,255,0.4);
-      transform: scale(1.02);
-    }
+        .top-bar-left {
+            display: flex;
+            gap: 2rem;
+        }
 
-    /* ---- NAVBAR glassmorphism ---- */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-      background: var(--glass-bg);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid var(--glass-border);
-      border-radius: 70px;
-      padding: 0.8rem 2rem;
-      box-shadow: var(--glass-shadow);
-    }
+        .top-bar-right {
+            display: flex;
+            gap: 1.5rem;
+        }
 
-    .logo-area {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+        .top-bar a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
 
-    .logo-icon {
-      font-size: 2rem;
-      color: var(--holographic-1);
-      filter: drop-shadow(0 0 8px rgba(160,233,255,0.7));
-    }
+        .top-bar a:hover {
+            color: var(--accent-gold);
+        }
 
-    .brand-name {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.9rem;
-      letter-spacing: -0.5px;
-      color: white;
-      background: linear-gradient(135deg, #ffffff, #d6e6ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
+        /* Main Navigation */
+        .main-nav {
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
 
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
+        .nav-logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+        }
 
-    .nav-link {
-      color: var(--text-secondary);
-      font-weight: 500;
-      text-decoration: none;
-      font-size: 1rem;
-      letter-spacing: 0.3px;
-      transition: 0.2s;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid transparent;
-    }
+        .nav-logo span {
+            color: var(--accent-gold);
+        }
 
-    .nav-link:hover {
-      color: white;
-      border-bottom: 1px solid var(--holographic-1);
-      text-shadow: 0 0 10px rgba(200,230,255,0.8);
-    }
+        .nav-menu {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
 
-    .nav-icons {
-      display: flex;
-      gap: 1.2rem;
-      color: #cdd7e2;
-      font-size: 1.3rem;
-    }
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-family: var(--font-technical);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.3s;
+            position: relative;
+        }
 
-    /* ---- HERO SECTION (futuristic modest fashion) ---- */
-    .hero-section {
-      display: flex;
-      flex-wrap: wrap;
-      background: var(--glass-bg);
-      backdrop-filter: blur(25px);
-      -webkit-backdrop-filter: blur(25px);
-      border-radius: 3rem;
-      border: 1px solid var(--glass-border);
-      padding: 2.5rem 2.8rem;
-      margin-bottom: 3rem;
-      box-shadow: var(--glass-shadow), 0 0 80px rgba(150, 180, 240, 0.2);
-      gap: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-gold);
+            transition: width 0.3s;
+        }
 
-    .hero-section::after {
-      content: "";
-      position: absolute;
-      top: -40%;
-      right: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(160,233,255,0.15) 0%, rgba(193,179,255,0.1) 50%, transparent 70%);
-      border-radius: 50%;
-      pointer-events: none;
-    }
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
 
-    .hero-text {
-      flex: 1 1 380px;
-      z-index: 2;
-    }
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+            font-size: 1.2rem;
+        }
 
-    .hero-badge {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(200,200,255,0.3);
-      backdrop-filter: blur(5px);
-      padding: 0.4rem 1.2rem;
-      border-radius: 30px;
-      display: inline-block;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: var(--holographic-2);
-      margin-bottom: 1.2rem;
-    }
+        .nav-icons i {
+            cursor: pointer;
+            transition: color 0.3s;
+        }
 
-    .hero-title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 4rem;
-      line-height: 1.1;
-      background: linear-gradient(140deg, #fff, #e6f0ff, #e0d4ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.02em;
-    }
+        .nav-icons i:hover {
+            color: var(--accent-gold);
+        }
 
-    .hero-description {
-      color: var(--text-secondary);
-      font-size: 1.2rem;
-      font-weight: 300;
-      max-width: 500px;
-      margin-bottom: 2rem;
-      line-height: 1.6;
-    }
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 30%, #0a0a0f 70%);
+            padding: 4rem;
+        }
 
-    .cta-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
 
-    .btn-primary {
-      background: rgba(255,255,255,0.9);
-      border: none;
-      padding: 1rem 2.5rem;
-      border-radius: 50px;
-      font-weight: 600;
-      color: #0b0e14;
-      font-family: var(--font-main);
-      letter-spacing: 0.5px;
-      cursor: pointer;
-      transition: 0.3s;
-      box-shadow: 0 8px 25px rgba(255,255,255,0.2);
-    }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+        }
 
-    .btn-primary:hover {
-      background: white;
-      box-shadow: 0 0 30px rgba(255,255,255,0.6);
-      transform: translateY(-3px);
-    }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 169, 110, 0.1);
+            border: 1px solid rgba(201, 169, 110, 0.3);
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-technical);
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
 
-    .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.3);
-      padding: 1rem 2.2rem;
-      border-radius: 50px;
-      font-weight: 500;
-      color: white;
-      font-family: var(--font-main);
-      cursor: pointer;
-      backdrop-filter: blur(5px);
-      transition: 0.3s;
-    }
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
 
-    .btn-secondary:hover {
-      border-color: rgba(180,200,255,0.8);
-      background: rgba(255,255,255,0.05);
-    }
+        .hero-title span {
+            color: var(--accent-gold);
+        }
 
-    .hero-image-wrapper {
-      flex: 1 1 350px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 2;
-    }
+        .hero-description {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
 
-    .hero-image {
-      width: 100%;
-      max-width: 460px;
-      aspect-ratio: 3/4;
-      background: linear-gradient(145deg, rgba(200,210,230,0.2), rgba(120,140,180,0.15));
-      border-radius: 2rem;
-      border: 1px solid rgba(255,255,255,0.3);
-      box-shadow: 0 30px 40px rgba(0,0,0,0.5), 0 0 50px rgba(160,200,255,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-      backdrop-filter: blur(2px);
-    }
+        .hero-buttons {
+            display: flex;
+            gap: 2rem;
+            animation: fadeInUp 1s ease-out 0.6s backwards;
+        }
 
-    .hero-image svg, .fashion-svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
+        .btn-primary {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 1rem 2.5rem;
+            border: none;
+            font-family: var(--font-technical);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
 
-    .floating-accent {
-      position: absolute;
-      background: rgba(255,255,255,0.08);
-      border-radius: 50%;
-      filter: blur(20px);
-    }
+        .btn-primary:hover {
+            background: #d4b87e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201, 169, 110, 0.3);
+        }
 
-    .accent-1 {
-      width: 150px;
-      height: 150px;
-      top: 10%;
-      left: -20px;
-      background: rgba(180, 220, 255, 0.3);
-    }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--text-secondary);
+            font-family: var(--font-technical);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
 
-    .accent-2 {
-      width: 200px;
-      height: 200px;
-      bottom: 10%;
-      right: -30px;
-      background: rgba(220, 190, 255, 0.3);
-    }
+        .btn-secondary:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+        }
 
-    /* ---- SUSTAINABLE THRIFT BANNER ---- */
-    .sustainable-bar {
-      background: rgba(15, 20, 30, 0.7);
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(150,200,180,0.2);
-      border-radius: 70px;
-      padding: 1.2rem 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    .eco-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #c6e9d6;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-    }
+        .hero-image {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 600px;
+            background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(201, 169, 110, 0.2);
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+        }
 
-    /* ---- PRODUCT GRID (glass cards) ---- */
-    .section-title {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 2.2rem;
-      letter-spacing: -0.5px;
-      margin-bottom: 2rem;
-      color: white;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
+        @keyframes float {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            50% { transform: translateY(-55%) rotate(2deg); }
+        }
 
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3.5rem;
-    }
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a, #1a1a1a);
+            padding: 4rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            border-top: 1px solid rgba(201, 169, 110, 0.2);
+            border-bottom: 1px solid rgba(201, 169, 110, 0.2);
+        }
 
-    .product-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      border: 1px solid var(--glass-border);
-      border-radius: 1.8rem;
-      padding: 1.8rem 1.2rem;
-      transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
+        .stat-item {
+            text-align: center;
+        }
 
-    .product-card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(180, 200, 255, 0.4);
-      box-shadow: 0 30px 40px rgba(0,0,0,0.5), 0 0 30px rgba(160,210,255,0.2);
-    }
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
 
-    .product-image {
-      width: 100%;
-      aspect-ratio: 1/1;
-      border-radius: 1.2rem;
-      background: linear-gradient(135deg, rgba(200,210,230,0.25), rgba(100,130,170,0.15));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      position: relative;
-    }
+        .stat-label {
+            font-family: var(--font-technical);
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
 
-    .product-image svg {
-      width: 100%;
-      height: 100%;
-      opacity: 0.9;
-    }
+        /* Featured Collection */
+        .featured-section {
+            padding: 6rem 4rem;
+            background: var(--primary-dark);
+        }
 
-    .product-name {
-      font-weight: 600;
-      font-size: 1.3rem;
-      letter-spacing: -0.2px;
-    }
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
 
-    .product-price {
-      color: #c0d9ff;
-      font-weight: 500;
-    }
+        .section-subtitle {
+            font-family: var(--font-technical);
+            font-size: 0.9rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
 
-    .product-tag {
-      font-size: 0.8rem;
-      background: rgba(180,220,200,0.15);
-      padding: 0.3rem 0.8rem;
-      border-radius: 30px;
-      color: #b1e6cf;
-      align-self: flex-start;
-      border: 0.5px solid rgba(180,220,200,0.3);
-    }
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
 
-    /* ---- FOOTER ---- */
-    .footer {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 2rem;
-      padding: 2.5rem 0;
-      margin-top: 1rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
-      color: var(--text-secondary);
-    }
+        .section-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 2rem auto;
+        }
 
-    .footer-links {
-      display: flex;
-      gap: 2.5rem;
-    }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-      .site-wrapper {
-        padding: 1rem 1.2rem 2rem;
-      }
-      .welcome-title {
-        font-size: 2.5rem;
-      }
-      .hero-title {
-        font-size: 2.8rem;
-      }
-      .navbar {
-        border-radius: 40px;
-        padding: 0.8rem 1.2rem;
-      }
-    }
-  </style>
+        .product-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(201, 169, 110, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .product-image {
+            height: 350px;
+            background: linear-gradient(135deg, #2a2a3e, #1a1a2e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-radius: 4px;
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-category {
+            font-family: var(--font-technical);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .product-price {
+            font-family: var(--font-technical);
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .product-price span {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-right: 0.5rem;
+        }
+
+        /* Sustainability Banner */
+        .sustainability-section {
+            background: linear-gradient(135deg, #1a1a2e, #0a0a0f);
+            padding: 6rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sustainability-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .sustainability-content h2 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .sustainability-content p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .sustainability-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--accent-gold);
+            background: var(--glass-hover);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--accent-gold);
+        }
+
+        .feature-text h3 {
+            font-family: var(--font-technical);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        /* Newsletter Section */
+        .newsletter-section {
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            padding: 5rem 4rem;
+            text-align: center;
+        }
+
+        .newsletter-form {
+            max-width: 500px;
+            margin: 3rem auto 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .newsletter-form button {
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            padding: 1rem 2rem;
+            font-family: var(--font-technical);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #d4b87e;
+        }
+
+        /* Footer */
+        .footer {
+            background: #0a0a0f;
+            padding: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-column h3 {
+            font-family: var(--font-technical);
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column ul a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-title {
+                font-size: 3rem;
+            }
+            
+            .main-nav {
+                padding: 1rem 2rem;
+                flex-wrap: wrap;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1.5rem;
+                flex-wrap: wrap;
+            }
+            
+            .hero {
+                padding: 2rem;
+                min-height: auto;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-image {
+                position: relative;
+                right: auto;
+                top: auto;
+                transform: none;
+                width: 100%;
+                height: 400px;
+                margin-top: 2rem;
+                animation: none;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 2rem;
+            }
+            
+            .featured-section,
+            .sustainability-section,
+            .newsletter-section {
+                padding: 3rem 2rem;
+            }
+            
+            .sustainability-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .footer {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .welcome-title {
+                font-size: 2rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .top-bar {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .top-bar-left,
+            .top-bar-right {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="site-wrapper">
-    <!-- WELCOME PAGE / OVERLAY (always visible as premium welcome block) -->
-    <div class="welcome-overlay" id="welcomeSection">
-      <div class="welcome-content">
-        <div class="welcome-left">
-          <div class="welcome-greeting"> ✦ Welcome to the future of modest fashion ✦ </div>
-          <div class="welcome-title">Al-Zay Thrift Studio</div>
-          <div class="welcome-text">Curated pre-loved pieces, reimagined with sustainable elegance. Where timeless modesty meets holographic innovation.</div>
-          <span class="welcome-badge"><i class="fas fa-leaf" style="margin-right: 6px;"></i> 100% sustainable • carbon neutral</span>
+    <!-- Welcome Page -->
+    <div class="welcome-overlay">
+        <div class="welcome-content">
+            <div class="welcome-logo">
+                <i class="fas fa-crown"></i>
+            </div>
+            <h1 class="welcome-title">Al-Zay Thrift</h1>
+            <p class="welcome-subtitle">Futuristic Modest Fashion</p>
+            <div class="welcome-line"></div>
+            <p style="color: var(--text-secondary); font-style: italic;">"Where Sustainability Meets Elegance"</p>
         </div>
-        <div class="welcome-right">
-          <button class="welcome-btn" onclick="document.getElementById('heroSection').scrollIntoView({behavior:'smooth'});">
-            Explore Collection <i class="fas fa-arrow-right"></i>
-          </button>
-        </div>
-      </div>
     </div>
 
-    <!-- NAVBAR -->
-    <nav class="navbar">
-      <div class="logo-area">
-        <i class="fas fa-cube logo-icon"></i>
-        <span class="brand-name">al-zay</span>
-      </div>
-      <div class="nav-links">
-        <a href="#" class="nav-link">Home</a>
-        <a href="#" class="nav-link">Shop</a>
-        <a href="#" class="nav-link">Thrift</a>
-        <a href="#" class="nav-link">Journal</a>
-        <a href="#" class="nav-link">About</a>
-      </div>
-      <div class="nav-icons">
-        <i class="fas fa-search"></i>
-        <i class="fas fa-user"></i>
-        <i class="fas fa-shopping-bag"></i>
-      </div>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <span><i class="fas fa-phone"></i> +1 (555) 123-4567</span>
+            <span><i class="fas fa-envelope"></i> info@alzaythrift.com</span>
+        </div>
+        <div class="top-bar-right">
+            <a href="#"><i class="fas fa-truck"></i> Free Shipping Over $200</a>
+            <a href="#"><i class="fas fa-gift"></i> Gift Cards</a>
+            <a href="#"><i class="fas fa-globe"></i> EN</a>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-logo">AL-ZAY <span>THRIFT</span></div>
+        <ul class="nav-menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">New Arrivals</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Accessories</a></li>
+            <li><a href="#">Sale</a></li>
+        </ul>
+        <div class="nav-icons">
+            <i class="fas fa-search"></i>
+            <i class="fas fa-user"></i>
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-shopping-bag"></i>
+        </div>
     </nav>
 
-    <!-- HERO SECTION (id for scroll target) -->
-    <div class="hero-section" id="heroSection">
-      <div class="hero-text">
-        <span class="hero-badge">✦ new drop: futuristic modest edit</span>
-        <h1 class="hero-title">Wear the future, honor the past.</h1>
-        <p class="hero-description">Flowing fabrics, sculptural silhouettes, and subtle metallic accents. Each piece is thrifted, restored, and elevated — a one-of-one statement of conscious luxury.</p>
-        <div class="cta-group">
-          <button class="btn-primary">Shop Now</button>
-          <button class="btn-secondary">Our story</button>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Sustainable Collection 2025</div>
+            <h1 class="hero-title">Modest Fashion<br>for the <span>Future</span></h1>
+            <p class="hero-description">
+                Discover curated thrift pieces that blend traditional elegance with futuristic aesthetics. 
+                Every item tells a story of sustainability and style.
+            </p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToFeatured()">Shop Collection</button>
+                <button class="btn-secondary">Learn More</button>
+            </div>
         </div>
-      </div>
-      <div class="hero-image-wrapper">
         <div class="hero-image">
-          <!-- custom inline SVG: futuristic modest fashion silhouette with flowing fabric + metallic accents -->
-          <svg class="fashion-svg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid meet">
-            <defs>
-              <linearGradient id="fabricGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#c4d5f0" stop-opacity="0.9"/>
-                <stop offset="100%" stop-color="#a0b2d0" stop-opacity="0.7"/>
-              </linearGradient>
-              <linearGradient id="metallicAccent" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#e2e9ff" />
-                <stop offset="50%" stop-color="#b8cfff" />
-                <stop offset="100%" stop-color="#d9c7ff" />
-              </linearGradient>
-              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur stdDeviation="5" result="blur" />
-                <feMerge>
-                  <feMergeNode in="blur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <!-- background subtle -->
-            <ellipse cx="200" cy="430" rx="120" ry="30" fill="rgba(150,180,220,0.15)" />
-            <!-- futuristic head/veil -->
-            <circle cx="200" cy="140" r="35" fill="#c8d5e8" opacity="0.6" />
-            <path d="M170 120 Q200 70 230 120 L220 190 Q200 160 180 190 Z" fill="#e0e8f5" opacity="0.7" />
-            <!-- flowing modest garment -->
-            <path d="M160 200 L240 200 L270 320 Q220 370 170 340 Z" fill="url(#fabricGrad)" opacity="0.85" />
-            <path d="M185 200 Q200 240 215 200 L235 330 Q200 380 165 330 Z" fill="rgba(240,245,255,0.5)" />
-            <!-- metallic neon accents (lines/details) -->
-            <path d="M190 240 L210 240 L215 280 L185 280 Z" fill="url(#metallicAccent)" filter="url(#glow)" opacity="0.9" />
-            <path d="M160 310 Q180 350 200 340 Q210 380 200 410" stroke="#b8d0ff" stroke-width="3" fill="none" opacity="0.8" filter="url(#glow)"/>
-            <path d="M240 310 Q220 350 200 340" stroke="#d0b8ff" stroke-width="2" fill="none" opacity="0.8"/>
-            <!-- subtle geometric hi-tech details -->
-            <rect x="180" y="180" width="40" height="4" fill="#a6c8ff" opacity="0.5" />
-            <circle cx="270" cy="320" r="4" fill="#a0e9ff" filter="url(#glow)" opacity="0.9" />
-            <circle cx="130" cy="300" r="3" fill="#c1b3ff" filter="url(#glow)" opacity="0.9" />
-          </svg>
-          <div class="floating-accent accent-1"></div>
-          <div class="floating-accent accent-2"></div>
+            <svg width="100%" height="100%" viewBox="0 0 500 600" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
+                <defs>
+                    <linearGradient id="fabricGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#c9a96e;stop-opacity:0.6"/>
+                        <stop offset="100%" style="stop-color:#6b8cae;stop-opacity:0.4"/>
+                    </linearGradient>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+                <!-- Abstract Modest Fashion Figure -->
+                <ellipse cx="250" cy="500" rx="150" ry="50" fill="rgba(0,0,0,0.3)"/>
+                <path d="M250 150 Q270 100 290 150 L300 250 Q300 300 250 350 Q200 300 200 250 L210 150 Q230 100 250 150Z" fill="url(#fabricGradient)" opacity="0.8"/>
+                <path d="M230 200 Q250 180 270 200 L280 300 Q250 350 220 300Z" fill="rgba(200,200,220,0.3)"/>
+                <circle cx="250" cy="130" r="40" fill="#c9a96e" opacity="0.5" filter="url(#glow)"/>
+                <path d="M220 180 Q250 160 280 180" stroke="#c9a96e" stroke-width="2" fill="none" opacity="0.6"/>
+                <rect x="235" y="250" width="30" height="100" fill="rgba(201,169,110,0.2)" rx="5"/>
+                <circle cx="250" cy="220" r="5" fill="#fff" opacity="0.8"/>
+                <!-- Floating elements -->
+                <circle cx="100" cy="200" r="15" fill="rgba(255,255,255,0.1)"/>
+                <circle cx="400" cy="300" r="20" fill="rgba(201,169,110,0.2)"/>
+                <rect x="380" y="150" width="30" height="30" fill="rgba(255,255,255,0.1)" transform="rotate(45)"/>
+                <circle cx="350" cy="450" r="10" fill="rgba(107,140,174,0.3)"/>
+            </svg>
         </div>
-      </div>
-    </div>
+    </section>
 
-    <!-- SUSTAINABLE THRIFT CONCEPT BAR -->
-    <div class="sustainable-bar">
-      <span class="eco-item"><i class="fas fa-recycle" style="color: #9effd0;"></i> Upcycled & restored</span>
-      <span class="eco-item"><i class="fas fa-globe-asia" style="color: #a0e9ff;"></i> Circular fashion</span>
-      <span class="eco-item"><i class="fas fa-gem" style="color: #d4b8ff;"></i> One-of-one finds</span>
-      <span class="eco-item"><i class="fas fa-hand-holding-heart" style="color: #ffc7d0;"></i> Low impact luxury</span>
-    </div>
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stat-item">
+            <div class="stat-number">10K+</div>
+            <div class="stat-label">Happy Customers</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">5K+</div>
+            <div class="stat-label">Unique Pieces</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Sustainable</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4.9/5</div>
+            <div class="stat-label">Customer Rating</div>
+        </div>
+    </section>
 
-    <!-- PRODUCT GRID (PREMIUM THRIFT ITEMS) -->
-    <h2 class="section-title"><i class="fas fa-sparkles" style="color: #d4b8ff;"></i> Curated thrift edits</h2>
-    <div class="product-grid">
-      <!-- card 1 -->
-      <div class="product-card">
-        <div class="product-image">
-          <svg viewBox="0 0 200 200">
-            <rect width="200" height="200" fill="#223044" opacity="0.3" />
-            <path d="M60 70 Q100 20 140 70 L130 140 Q100 170 70 140 Z" fill="rgba(210,220,240,0.5)" />
-            <path d="M80 100 L120 100 L115 150 L85 150 Z" fill="rgba(180,200,230,0.7)" />
-            <circle cx="100" cy="70" r="22" fill="#c0ccdf" />
-          </svg>
+    <!-- Featured Collection -->
+    <section class="featured-section" id="featured">
+        <div class="section-header">
+            <div class="section-subtitle">Curated for You</div>
+            <h2 class="section-title">Featured Collection</h2>
+            <div class="section-divider"></div>
         </div>
-        <span class="product-tag">vintage · silk</span>
-        <div class="product-name">Holographic Abaya</div>
-        <div class="product-price">$189</div>
-      </div>
-      <!-- card 2 -->
-      <div class="product-card">
-        <div class="product-image">
-          <svg viewBox="0 0 200 200">
-            <rect width="200" height="200" fill="#1e2538" opacity="0.4" />
-            <path d="M50 80 Q100 30 150 80 L135 160 Q100 180 65 160 Z" fill="rgba(190,205,230,0.5)" />
-            <path d="M70 110 L130 110 L120 170 L80 170 Z" fill="rgba(160,180,215,0.7)" />
-            <line x1="100" y1="60" x2="100" y2="150" stroke="#d6e6ff" stroke-width="2" opacity="0.6"/>
-          </svg>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badge">New</div>
+                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
+                        <rect width="300" height="350" fill="none"/>
+                        <path d="M150 50 Q175 20 200 50 L220 150 Q200 200 150 220 Q100 200 80 150 L100 50 Q125 20 150 50Z" fill="rgba(201,169,110,0.3)"/>
+                        <path d="M130 100 Q150 80 170 100 L180 180 Q150 210 120 180Z" fill="rgba(255,255,255,0.2)"/>
+                        <circle cx="150" cy="120" r="30" fill="rgba(107,140,174,0.4)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Wear</div>
+                    <div class="product-name">Futuristic Abaya</div>
+                    <div class="product-price"><span>$249</span> $199</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badge">Vintage</div>
+                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
+                        <rect width="300" height="350" fill="none"/>
+                        <path d="M150 60 Q180 30 210 60 L230 160 Q200 210 150 220 Q100 210 70 160 L90 60 Q120 30 150 60Z" fill="rgba(107,140,174,0.3)"/>
+                        <path d="M120 110 Q150 90 180 110 L190 180 Q150 220 110 180Z" fill="rgba(255,255,255,0.25)"/>
+                        <rect x="135" y="130" width="30" height="60" fill="rgba(201,169,110,0.3)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Accessories</div>
+                    <div class="product-name">Metallic Hijab</div>
+                    <div class="product-price"><span>$129</span> $99</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badge">Limited</div>
+                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
+                        <rect width="300" height="350" fill="none"/>
+                        <path d="M150 70 Q180 40 200 70 L220 170 Q190 220 150 230 Q110 220 80 170 L100 70 Q120 40 150 70Z" fill="rgba(201,169,110,0.4)"/>
+                        <path d="M130 120 Q150 100 170 120 L180 190 Q150 230 120 190Z" fill="rgba(255,255,255,0.15)"/>
+                        <circle cx="150" cy="130" r="25" fill="rgba(107,140,174,0.5)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Wear</div>
+                    <div class="product-name">Neo-Thobe</div>
+                    <div class="product-price"><span>$299</span> $249</div>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <div class="product-badge">Sale</div>
+                    <svg width="100%" height="100%" viewBox="0 0 300 350" style="background: linear-gradient(135deg, #2a2a3e, #1a1a2e);">
+                        <rect width="300" height="350" fill="none"/>
+                        <path d="M150 40 Q185 10 210 40 L240 140 Q210 190 150 200 Q90 190 60 140 L90 40 Q115 10 150 40Z" fill="rgba(107,140,174,0.4)"/>
+                        <path d="M125 90 Q150 70 175 90 L185 160 Q150 200 115 160Z" fill="rgba(255,255,255,0.2)"/>
+                        <rect x="140" y="120" width="20" height="50" fill="rgba(201,169,110,0.4)"/>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Outerwear</div>
+                    <div class="product-name">Futuristic Kimono</div>
+                    <div class="product-price"><span>$349</span> $279</div>
+                </div>
+            </div>
         </div>
-        <span class="product-tag">upcycled · metallic</span>
-        <div class="product-name">Neo-Kaftan Set</div>
-        <div class="product-price">$224</div>
-      </div>
-      <!-- card 3 -->
-      <div class="product-card">
-        <div class="product-image">
-          <svg viewBox="0 0 200 200">
-            <rect width="200" height="200" fill="#272f44" opacity="0.3" />
-            <path d="M55 90 Q100 40 145 90 L125 160 Q100 175 75 160 Z" fill="rgba(205,215,240,0.5)" />
-            <path d="M85 100 L115 100 L110 160 L90 160 Z" fill="rgba(180,200,230,0.8)" />
-            <circle cx="100" cy="60" r="18" fill="#dfe8ff" opacity="0.8"/>
-          </svg>
-        </div>
-        <span class="product-tag">limited · linen</span>
-        <div class="product-name">Futurist Veil & Tunic</div>
-        <div class="product-price">$275</div>
-      </div>
-      <!-- card 4 -->
-      <div class="product-card">
-        <div class="product-image">
-          <svg viewBox="0 0 200 200">
-            <rect width="200" height="200" fill="#1b2333" opacity="0.5" />
-            <path d="M65 60 Q100 15 135 60 L130 140 Q100 175 70 140 Z" fill="rgba(190,210,230,0.45)" />
-            <path d="M78 90 L122 90 L115 165 L85 165 Z" fill="rgba(210,220,245,0.7)" />
-            <path d="M95 90 L105 90 L100 165 L95 165 Z" fill="#b8cfff" opacity="0.9" />
-          </svg>
-        </div>
-        <span class="product-tag">sustainably dyed</span>
-        <div class="product-name">Lunar Modest Dress</div>
-        <div class="product-price">$310</div>
-      </div>
-    </div>
+    </section>
 
-    <!-- FOOTER (premium minimal) -->
+    <!-- Sustainability Section -->
+    <section class="sustainability-section">
+        <div class="sustainability-grid">
+            <div class="sustainability-content">
+                <div class="section-subtitle">Our Commitment</div>
+                <h2>Sustainable Fashion<br>for Tomorrow</h2>
+                <p>
+                    At Al-Zay Thrift Studio, we believe in fashion that respects both people and planet. 
+                    Our unique thrift model gives pre-loved garments a second life, reducing waste and 
+                    promoting circular fashion.
+                </p>
+                <div class="sustainability-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Upcycled Materials</h3>
+                            <p>Giving new life to quality fabrics</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Zero Waste</h3>
+                            <p>Minimal environmental impact</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Ethical Sourcing</h3>
+                            <p>Fair practices throughout</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h3>Carbon Neutral</h3>
+                            <p>Offsetting our footprint</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <svg width="100%" height="400" viewBox="0 0 500 400" style="background: linear-gradient(135deg, #1a1a2e, #0a0a0f); border-radius: 12px;">
+                    <circle cx="250" cy="200" r="150" fill="none" stroke="rgba(201,169,110,0.3)" stroke-width="2"/>
+                    <circle cx="250" cy="200" r="120" fill="none" stroke="rgba(107,140,174,0.3)" stroke-width="2"/>
+                    <circle cx="250" cy="200" r="90" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                    <path d="M250 50 L250 350 M100 200 L400 200" stroke="rgba(201,169,110,0.2)" stroke-width="1"/>
+                    <text x="250" y="100" text-anchor="middle" fill="#c9a96e" font-size="20" font-family="Space Grotesk">SUSTAINABLE</text>
+                    <text x="250" y="200" text-anchor="middle" fill="#6b8cae" font-size="16" font-family="Space Grotesk">CIRCULAR</text>
+                    <text x="250" y="300" text-anchor="middle" fill="#ffffff" font-size="14" font-family="Space Grotesk">FASHION</text>
+                    <circle cx="250" cy="200" r="10" fill="#c9a96e"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <div class="section-subtitle">Stay Connected</div>
+        <h2 class="section-title" style="font-family: var(--font-display); font-size: 2.5rem; margin-bottom: 1rem;">Join Our Newsletter</h2>
+        <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto;">
+            Subscribe to receive exclusive offers, new arrivals, and sustainable fashion tips.
+        </p>
+        <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-      <div>© 2025 Al-Zay Thrift Studio — futuristic modest thrift</div>
-      <div class="footer-links">
-        <a href="#" style="color: inherit; text-decoration: none;">Sustainability</a>
-        <a href="#" style="color: inherit; text-decoration: none;">Careers</a>
-        <a href="#" style="color: inherit; text-decoration: none;">Contact</a>
-      </div>
+        <div class="footer-grid">
+            <div class="footer-column">
+                <h3>Al-Zay Thrift</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Futuristic modest fashion with a sustainable heart. Every piece tells a story.
+                </p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Women's Wear</a></li>
+                    <li><a href="#">Men's Wear</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Sale Items</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href="#">Track Order</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Al-Zay Thrift Studio. All rights reserved. | Designed with ❤ for sustainable fashion</p>
+        </div>
     </footer>
-  </div>
 
-  <!-- subtle interaction script to ensure "fully functional" scroll and no errors -->
-  <script>
-    (function() {
-      // No external errors, smooth scroll for any anchor with '#' 
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId.length > 1) {
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-              e.preventDefault();
-              targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-          } else {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        e.preventDefault();
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                } else {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                }
+            });
         });
-      });
-      console.log('Al-Zay Thrift Studio — premium experience loaded. Welcome to the future.');
-    })();
-  </script>
+
+        // Function to scroll to featured section
+        function scrollToFeatured() {
+            const featuredSection = document.getElementById('featured');
+            if (featuredSection) {
+                featuredSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = this.querySelector('input[type="email"]');
+            if (emailInput.value) {
+                alert('Thank you for subscribing! Welcome to the Al-Zay community.');
+                emailInput.value = '';
+            }
+        });
+
+        // Add to cart functionality
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const productName = this.querySelector('.product-name').textContent;
+                const productPrice = this.querySelector('.product-price').textContent;
+                console.log(`Added to cart: ${productName} - ${productPrice}`);
+                // You can add cart functionality here
+            });
+        });
+
+        // Initialize cart count
+        let cartCount = 0;
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.cursor = 'pointer';
+        });
+
+        // Mobile menu toggle
+        const navMenu = document.querySelector('.nav-menu');
+        const navToggle = document.createElement('button');
+        navToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        navToggle.style.cssText = `
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        `;
+
+        document.querySelector('.main-nav').insertBefore(navToggle, document.querySelector('.nav-icons'));
+
+        navToggle.addEventListener('click', function() {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Responsive menu handling
+        function handleResize() {
+            if (window.innerWidth <= 768) {
+                navToggle.style.display = 'block';
+                navMenu.style.display = 'none';
+                navMenu.style.flexDirection = 'column';
+                navMenu.style.width = '100%';
+                navMenu.style.padding = '1rem 0';
+            } else {
+                navToggle.style.display = 'none';
+                navMenu.style.display = 'flex';
+                navMenu.style.flexDirection = 'row';
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+        handleResize();
+
+        // Lazy loading animation for product cards
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Smooth scroll to top button
+        const scrollTopBtn = document.createElement('button');
+        scrollTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        scrollTopBtn.style.cssText = `
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border: none;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+            transition: all 0.3s;
+        `;
+
+        scrollTopBtn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 6px 20px rgba(201, 169, 110, 0.5)';
+        });
+
+        scrollTopBtn.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 15px rgba(201, 169, 110, 0.3)';
+        });
+
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        document.body.appendChild(scrollTopBtn);
+
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 500) {
+                scrollTopBtn.style.display = 'flex';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        console.log('Al-Zay Thrift Studio - Premium E-Commerce Experience Loaded Successfully');
+    </script>
 </body>
 </html>
