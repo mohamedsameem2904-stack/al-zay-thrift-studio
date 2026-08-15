@@ -24,6 +24,26 @@
             --font-body: 'Space Grotesk', sans-serif;
         }
 
+        /* Dark theme (default) */
+        .theme-dark {
+            --color-bg: #0a0a0a;
+            --color-surface: #141414;
+            --color-card: #1e1e1e;
+            --color-border: #2a2a2a;
+            --color-text: #ffffff;
+            --color-text-muted: #888888;
+        }
+
+        /* Light theme */
+        .theme-light {
+            --color-bg: #f5f5f5;
+            --color-surface: #ffffff;
+            --color-card: #f0f0f0;
+            --color-border: #e0e0e0;
+            --color-text: #1a1a1a;
+            --color-text-muted: #666666;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -40,6 +60,7 @@
             font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
+            transition: all 0.3s ease;
         }
 
         /* Custom Scrollbar */
@@ -56,6 +77,32 @@
             border-radius: 5px;
         }
 
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--color-accent);
+            color: var(--color-bg);
+            border: none;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px var(--color-accent-glow);
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px var(--color-accent-glow);
+        }
+
         /* Running Ticker */
         .ticker-wrapper {
             background: var(--color-accent);
@@ -68,7 +115,7 @@
 
         .ticker {
             display: flex;
-            animation: ticker 20s linear infinite;
+            animation: ticker 15s linear infinite;
             white-space: nowrap;
         }
 
@@ -85,14 +132,14 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Welcome Modal */
+        /* Welcome Modal - Modern Clean Design */
         .welcome-modal {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            background: var(--color-bg);
             z-index: 10000;
             display: flex;
             align-items: center;
@@ -106,7 +153,8 @@
 
         .welcome-content {
             text-align: center;
-            padding: 3rem;
+            padding: 2rem;
+            max-width: 600px;
             position: relative;
         }
 
@@ -114,21 +162,22 @@
             display: inline-block;
             background: var(--color-accent);
             color: var(--color-bg);
-            padding: 0.5rem 1.5rem;
-            font-size: 0.8rem;
+            padding: 0.4rem 1.2rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 20px;
             animation: slideDown 0.8s ease;
         }
 
         .welcome-title {
             font-family: var(--font-display);
-            font-size: 4rem;
+            font-size: 3.5rem;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             animation: slideUp 1s ease;
         }
 
@@ -137,9 +186,9 @@
         }
 
         .welcome-subtitle {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--color-text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             animation: slideUp 1.2s ease;
         }
 
@@ -147,11 +196,12 @@
             background: var(--color-accent);
             color: var(--color-bg);
             border: none;
-            padding: 1rem 3rem;
-            font-size: 1rem;
+            padding: 0.8rem 2.5rem;
+            font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
+            border-radius: 30px;
             animation: slideUp 1.4s ease;
         }
 
@@ -181,7 +231,7 @@
             position: sticky;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.95);
+            background: var(--color-bg);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--color-border);
             z-index: 1000;
@@ -189,13 +239,13 @@
         }
 
         .navbar.scrolled {
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
 
         .navbar-container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -203,7 +253,7 @@
 
         .navbar-logo {
             font-family: var(--font-display);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--color-text);
             text-decoration: none;
@@ -216,7 +266,7 @@
 
         .navbar-menu {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             list-style: none;
             align-items: center;
         }
@@ -224,7 +274,7 @@
         .navbar-menu a {
             color: var(--color-text);
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -262,7 +312,7 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
+        /* Hero Section with Grid Animation */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -274,40 +324,23 @@
             padding: 6rem 2rem 4rem;
         }
 
-        .hero-bg {
+        .hero-grid {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 50% 50%, rgba(212, 255, 63, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+            background-image: 
+                linear-gradient(var(--color-border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            opacity: 0.3;
         }
 
-        .hero-particles {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--color-accent);
-            border-radius: 50%;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-100px) rotate(180deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
         }
 
         .hero-content {
@@ -333,7 +366,7 @@
 
         .hero-title {
             font-family: var(--font-display);
-            font-size: 5rem;
+            font-size: 4rem;
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
@@ -345,7 +378,7 @@
         }
 
         .hero-description {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: var(--color-text-muted);
             margin-bottom: 2rem;
             animation: slideUp 1.4s ease;
@@ -359,8 +392,8 @@
         }
 
         .btn {
-            padding: 1rem 2rem;
-            font-size: 0.9rem;
+            padding: 0.8rem 1.8rem;
+            font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -368,6 +401,7 @@
             cursor: pointer;
             transition: all 0.3s;
             border: none;
+            border-radius: 30px;
         }
 
         .btn-primary {
@@ -395,49 +429,51 @@
 
         /* Products Section */
         .products {
-            padding: 4rem 2rem;
+            padding: 3rem 1rem;
             background: var(--color-surface);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         .section-subtitle {
             color: var(--color-accent);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .section-title {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .section-description {
             color: var(--color-text-muted);
             max-width: 600px;
             margin: 0 auto;
+            font-size: 0.9rem;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
             max-width: 1400px;
             margin: 0 auto;
+            padding: 0 0.5rem;
         }
 
         .product-card {
             background: var(--color-card);
             border: 1px solid var(--color-border);
-            border-radius: 12px;
+            border-radius: 10px;
             overflow: hidden;
             transition: all 0.3s;
             position: relative;
@@ -445,15 +481,15 @@
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--color-accent);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -462,7 +498,7 @@
         }
 
         .product-image {
-            height: 300px;
+            height: 180px;
             background: var(--color-surface);
             position: relative;
             overflow: hidden;
@@ -472,56 +508,57 @@
         }
 
         .product-image i {
-            font-size: 8rem;
+            font-size: 5rem;
             transition: all 0.5s;
         }
 
         .product-card:hover .product-image i {
-            transform: scale(1.2) rotate(10deg);
+            transform: scale(1.1) rotate(5deg);
         }
 
         .product-badge {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0.5rem;
+            right: 0.5rem;
             background: var(--color-accent);
             color: var(--color-bg);
-            padding: 0.5rem 1rem;
-            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.6rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
             z-index: 2;
+            border-radius: 3px;
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 0.8rem;
         }
 
         .product-category {
             color: var(--color-accent);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .product-name {
-            font-size: 1.1rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .product-description {
             color: var(--color-text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            margin-bottom: 0.8rem;
         }
 
         .product-actions {
             display: flex;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .btn-enquire {
@@ -529,13 +566,14 @@
             background: var(--color-accent);
             color: var(--color-bg);
             border: none;
-            padding: 0.8rem;
+            padding: 0.5rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+            font-size: 0.65rem;
+            border-radius: 3px;
         }
 
         .btn-enquire:hover {
@@ -546,10 +584,12 @@
             background: transparent;
             color: var(--color-text);
             border: 1px solid var(--color-border);
-            padding: 0.8rem;
+            padding: 0.5rem;
             cursor: pointer;
             transition: all 0.3s;
             flex: 1;
+            font-size: 0.65rem;
+            border-radius: 3px;
         }
 
         .btn-view:hover {
@@ -559,7 +599,7 @@
 
         /* About Section */
         .about {
-            padding: 6rem 2rem;
+            padding: 4rem 1.5rem;
             background: var(--color-bg);
         }
 
@@ -568,28 +608,29 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 3rem;
             align-items: center;
         }
 
         .about-content h2 {
             font-family: var(--font-display);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .about-content p {
             color: var(--color-text-muted);
             margin-bottom: 1rem;
-            line-height: 1.8;
+            line-height: 1.7;
+            font-size: 0.9rem;
         }
 
         .about-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
         }
 
         .stat-item {
@@ -598,43 +639,43 @@
 
         .stat-number {
             font-family: var(--font-display);
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: var(--color-accent);
         }
 
         .stat-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: var(--color-text-muted);
         }
 
         /* Enquiry Section */
         .enquiry {
-            padding: 6rem 2rem;
+            padding: 4rem 1.5rem;
             background: var(--color-surface);
         }
 
         .enquiry-container {
-            max-width: 800px;
+            max-width: 700px;
             margin: 0 auto;
         }
 
         .enquiry-form {
             background: var(--color-card);
-            padding: 3rem;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 10px;
             border: 1px solid var(--color-border);
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
             font-weight: 500;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -643,12 +684,12 @@
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--color-bg);
             border: 1px solid var(--color-border);
             color: var(--color-text);
             font-family: var(--font-body);
-            font-size: 1rem;
+            font-size: 0.9rem;
             transition: all 0.3s;
             border-radius: 4px;
         }
@@ -663,7 +704,7 @@
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 100px;
         }
 
         .form-row {
@@ -674,11 +715,11 @@
 
         .form-submit {
             width: 100%;
-            padding: 1rem;
+            padding: 0.8rem;
             background: var(--color-accent);
             color: var(--color-bg);
             border: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -689,18 +730,19 @@
 
         .form-submit:hover {
             background: var(--color-accent-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px var(--color-accent-glow);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--color-accent-glow);
         }
 
         .form-success {
             display: none;
             background: #4caf50;
             color: white;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 4px;
             margin-bottom: 1rem;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .form-success.show {
@@ -710,51 +752,52 @@
 
         /* Contact Section */
         .contact {
-            padding: 4rem 2rem;
+            padding: 3rem 1.5rem;
             background: var(--color-bg);
         }
 
         .contact-grid {
-            max-width: 1000px;
+            max-width: 800px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
         }
 
         .contact-card {
             text-align: center;
-            padding: 2rem;
+            padding: 1.5rem;
             background: var(--color-card);
             border: 1px solid var(--color-border);
-            border-radius: 12px;
+            border-radius: 10px;
             transition: all 0.3s;
         }
 
         .contact-card:hover {
             border-color: var(--color-accent);
-            transform: translateY(-5px);
+            transform: translateY(-3px);
         }
 
         .contact-icon {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--color-accent);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .contact-card h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+            font-size: 1rem;
         }
 
         .contact-card p {
             color: var(--color-text-muted);
+            font-size: 0.85rem;
         }
 
         /* Footer */
         .footer {
             background: var(--color-surface);
-            padding: 3rem 2rem;
+            padding: 2.5rem 1.5rem;
             border-top: 1px solid var(--color-border);
         }
 
@@ -762,13 +805,13 @@
             max-width: 1200px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 2rem;
         }
 
         .footer-column h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
             font-weight: 600;
         }
 
@@ -777,13 +820,14 @@
         }
 
         .footer-column ul li {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
 
         .footer-column ul a {
             color: var(--color-text-muted);
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 0.85rem;
         }
 
         .footer-column ul a:hover {
@@ -792,13 +836,13 @@
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
         }
 
         .social-links a {
             color: var(--color-text-muted);
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             transition: color 0.3s;
         }
 
@@ -808,11 +852,11 @@
 
         .footer-bottom {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 2rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
             border-top: 1px solid var(--color-border);
             color: var(--color-text-muted);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* Responsive Design */
@@ -825,8 +869,8 @@
                 width: 100%;
                 background: var(--color-bg);
                 flex-direction: column;
-                padding: 1rem 2rem;
-                gap: 1rem;
+                padding: 1rem;
+                gap: 0.8rem;
                 border-bottom: 1px solid var(--color-border);
             }
 
@@ -839,7 +883,11 @@
             }
 
             .hero-title {
-                font-size: 3rem;
+                font-size: 2.5rem;
+            }
+
+            .hero-description {
+                font-size: 0.9rem;
             }
 
             .about-container {
@@ -849,29 +897,83 @@
 
             .form-row {
                 grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-cta {
-                flex-direction: column;
+                gap: 0;
             }
 
             .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+
+            .product-image {
+                height: 150px;
+            }
+
+            .product-image i {
+                font-size: 4rem;
+            }
+
+            .product-info {
+                padding: 0.6rem;
+            }
+
+            .product-name {
+                font-size: 0.8rem;
+            }
+
+            .product-description {
+                font-size: 0.7rem;
+            }
+
+            .btn-enquire,
+            .btn-view {
+                font-size: 0.6rem;
+                padding: 0.4rem;
+            }
+
+            .welcome-title {
+                font-size: 2.5rem;
+            }
+
+            .welcome-subtitle {
+                font-size: 1rem;
+            }
+
+            .ticker-item {
+                font-size: 0.75rem;
+                padding: 0 1rem;
+            }
+
+            .contact-grid {
                 grid-template-columns: 1fr;
             }
 
             .about-stats {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .welcome-title {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
-<body>
+<body class="theme-dark">
     <!-- Running Ticker -->
     <div class="ticker-wrapper">
         <div class="ticker">
@@ -897,9 +999,9 @@
     <!-- Welcome Modal -->
     <div class="welcome-modal" id="welcomeModal">
         <div class="welcome-content">
-            <div class="welcome-badge">Welcome to</div>
-            <h1 class="welcome-title">AL-ZAY <span>THRIFT STUDIO</span></h1>
-            <p class="welcome-subtitle">Premium Men's Printed T-Shirts Collection</p>
+            <div class="welcome-badge">AL-ZAY STUDIO</div>
+            <h1 class="welcome-title">Premium <span>Men's T-Shirts</span></h1>
+            <p class="welcome-subtitle">Discover unique designs crafted for the modern man</p>
             <button class="welcome-btn" onclick="closeWelcome()">Explore Collection</button>
         </div>
     </div>
@@ -923,8 +1025,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="hero-particles" id="particles"></div>
+        <div class="hero-grid"></div>
         <div class="hero-content">
             <div class="hero-badge">New Collection 2025</div>
             <h1 class="hero-title">Premium Printed <span>T-Shirts</span> for Men</h1>
@@ -985,8 +1086,8 @@
                 </div>
             </div>
             <div style="display: flex; align-items: center; justify-content: center;">
-                <div style="width: 100%; max-width: 400px; aspect-ratio: 1; background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid #d4ff3f; animation: pulse 3s ease-in-out infinite;">
-                    <i class="fas fa-tshirt" style="font-size: 15rem; color: #d4ff3f; opacity: 0.5;"></i>
+                <div style="width: 100%; max-width: 400px; aspect-ratio: 1; background: var(--color-card); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-accent);">
+                    <i class="fas fa-tshirt" style="font-size: 12rem; color: var(--color-accent); opacity: 0.5;"></i>
                 </div>
             </div>
         </div>
@@ -1026,7 +1127,6 @@
                             <label for="product">Product Interest *</label>
                             <select id="product" name="product" required>
                                 <option value="">Select a product</option>
-                                <!-- Products will be dynamically added -->
                             </select>
                         </div>
                     </div>
@@ -1063,8 +1163,8 @@
                     <i class="fas fa-phone"></i>
                 </div>
                 <h3>Phone</h3>
-                <p>+1 (555) 123-4567</p>
-                <p>Mon-Sat, 9am-7pm</p>
+                <p>+91 70947 10286</p>
+                <p>+91 78454 84137</p>
             </div>
             <div class="contact-card">
                 <div class="contact-icon">
@@ -1090,7 +1190,7 @@
         <div class="footer-content">
             <div class="footer-column">
                 <h3>Al-Zay Thrift Studio</h3>
-                <p style="color: #888; margin-bottom: 1rem;">Premium men's printed t-shirts for the modern gentleman.</p>
+                <p style="color: var(--color-text-muted); margin-bottom: 1rem; font-size: 0.85rem;">Premium men's printed t-shirts for the modern gentleman.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-facebook"></i></a>
@@ -1131,29 +1231,34 @@
         </div>
     </footer>
 
+    <!-- Theme Toggle Button -->
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </button>
+
     <script>
         // Product Data
         const products = [
-            { name: 'Urban Abstract Print Tee', category: 'Limited Edition', color: '#d4ff3f', description: 'Modern abstract design on premium cotton blend' },
-            { name: 'Geometric Pattern Tee', category: 'Best Seller', color: '#ff6b35', description: 'Bold geometric patterns that make a statement' },
-            { name: 'Minimalist Line Art Tee', category: 'Premium Quality', color: '#6b8cae', description: 'Elegant minimalist designs for the modern man' },
-            { name: 'Vintage Typography Tee', category: 'New Arrival', color: '#9b59b6', description: 'Retro-inspired typography designs' },
-            { name: 'Street Art Graphic Tee', category: 'Urban Collection', color: '#e74c3c', description: 'Bold street art inspired graphics' },
-            { name: 'Nature Inspired Tee', category: 'Eco Friendly', color: '#2ecc71', description: 'Beautiful nature-inspired designs on organic cotton' },
-            { name: 'Music Festival Tee', category: 'Limited Edition', color: '#f39c12', description: 'Vintage music festival inspired graphics' },
-            { name: 'Abstract Splash Tee', category: 'Artistic', color: '#3498db', description: 'Unique abstract splash art designs' },
-            { name: 'Tribal Pattern Tee', category: 'Cultural', color: '#e67e22', description: 'Traditional tribal patterns with modern twist' },
-            { name: 'Space Galaxy Tee', category: 'Cosmic', color: '#8e44ad', description: 'Stunning galaxy and space themed designs' },
-            { name: 'Skull Art Tee', category: 'Edgy', color: '#c0392b', description: 'Bold skull art designs for the daring' },
-            { name: 'Retro Wave Tee', category: 'Vintage', color: '#16a085', description: 'Synthwave and retro aesthetic designs' },
-            { name: 'Mandala Print Tee', category: 'Spiritual', color: '#27ae60', description: 'Intricate mandala patterns and designs' },
-            { name: 'Graffiti Style Tee', category: 'Streetwear', color: '#2980b9', description: 'Urban graffiti style art and typography' },
-            { name: 'Animal Kingdom Tee', category: 'Wildlife', color: '#d35400', description: 'Beautiful wildlife and animal inspired designs' },
-            { name: 'Typography Art Tee', category: 'Minimalist', color: '#34495e', description: 'Clean typography art and quotes' },
-            { name: 'Psychedelic Tee', category: 'Trippy', color: '#e74c3c', description: 'Mind-bending psychedelic patterns' },
-            { name: 'Patriotic Pride Tee', category: 'National', color: '#c0392b', description: 'Show your pride with patriotic designs' },
-            { name: 'Gamer Life Tee', category: 'Gaming', color: '#7f8c8d', description: 'Perfect for gaming enthusiasts' },
-            { name: 'Fitness Motivation Tee', category: 'Athletic', color: '#27ae60', description: 'Motivational designs for fitness lovers' }
+            { name: 'Urban Abstract Print Tee', category: 'Limited Edition', color: '#d4ff3f', description: 'Modern abstract design' },
+            { name: 'Geometric Pattern Tee', category: 'Best Seller', color: '#ff6b35', description: 'Bold geometric patterns' },
+            { name: 'Minimalist Line Art Tee', category: 'Premium Quality', color: '#6b8cae', description: 'Elegant minimalist designs' },
+            { name: 'Vintage Typography Tee', category: 'New Arrival', color: '#9b59b6', description: 'Retro-inspired typography' },
+            { name: 'Street Art Graphic Tee', category: 'Urban Collection', color: '#e74c3c', description: 'Bold street art graphics' },
+            { name: 'Nature Inspired Tee', category: 'Eco Friendly', color: '#2ecc71', description: 'Nature-inspired designs' },
+            { name: 'Music Festival Tee', category: 'Limited Edition', color: '#f39c12', description: 'Vintage music graphics' },
+            { name: 'Abstract Splash Tee', category: 'Artistic', color: '#3498db', description: 'Unique abstract art' },
+            { name: 'Tribal Pattern Tee', category: 'Cultural', color: '#e67e22', description: 'Traditional tribal patterns' },
+            { name: 'Space Galaxy Tee', category: 'Cosmic', color: '#8e44ad', description: 'Galaxy themed designs' },
+            { name: 'Skull Art Tee', category: 'Edgy', color: '#c0392b', description: 'Bold skull art designs' },
+            { name: 'Retro Wave Tee', category: 'Vintage', color: '#16a085', description: 'Retro aesthetic designs' },
+            { name: 'Mandala Print Tee', category: 'Spiritual', color: '#27ae60', description: 'Intricate mandala patterns' },
+            { name: 'Graffiti Style Tee', category: 'Streetwear', color: '#2980b9', description: 'Urban graffiti art' },
+            { name: 'Animal Kingdom Tee', category: 'Wildlife', color: '#d35400', description: 'Wildlife inspired designs' },
+            { name: 'Typography Art Tee', category: 'Minimalist', color: '#34495e', description: 'Clean typography art' },
+            { name: 'Psychedelic Tee', category: 'Trippy', color: '#e74c3c', description: 'Psychedelic patterns' },
+            { name: 'Patriotic Pride Tee', category: 'National', color: '#c0392b', description: 'Patriotic designs' },
+            { name: 'Gamer Life Tee', category: 'Gaming', color: '#7f8c8d', description: 'Gaming inspired designs' },
+            { name: 'Fitness Motivation Tee', category: 'Athletic', color: '#27ae60', description: 'Motivational designs' }
         ];
 
         // Generate Products
@@ -1162,12 +1267,10 @@
             const productSelect = document.getElementById('product');
             
             products.forEach((product, index) => {
-                // Create product card
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animationDelay = `${index * 0.05}s`;
                 
-                // Determine badge
                 let badge = 'New';
                 if (index % 4 === 0) badge = 'Hot';
                 if (index % 3 === 0) badge = 'Premium';
@@ -1176,14 +1279,14 @@
                 card.innerHTML = `
                     <div class="product-image">
                         <div class="product-badge">${badge}</div>
-                        <i class="fas fa-tshirt" style="font-size: 8rem; color: ${product.color}; opacity: 0.7;"></i>
+                        <i class="fas fa-tshirt" style="font-size: 5rem; color: ${product.color}; opacity: 0.7;"></i>
                     </div>
                     <div class="product-info">
                         <div class="product-category">${product.category}</div>
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-description">${product.description}</p>
                         <div class="product-actions">
-                            <button class="btn-enquire" onclick="openEnquiry('${product.name}')">Enquire Now</button>
+                            <button class="btn-enquire" onclick="openEnquiry('${product.name}')">Enquire</button>
                             <button class="btn-view" onclick="viewProduct('${product.name}', '${product.category}', '${product.description}')">Details</button>
                         </div>
                     </div>
@@ -1191,7 +1294,6 @@
                 
                 productsGrid.appendChild(card);
                 
-                // Add to product select
                 const option = document.createElement('option');
                 option.value = product.name;
                 option.textContent = product.name;
@@ -1206,7 +1308,6 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Prevent body scroll when welcome modal is open
         document.body.style.overflow = 'hidden';
 
         // Toggle Mobile Menu
@@ -1215,13 +1316,28 @@
             menu.classList.toggle('show');
         }
 
-        // Close mobile menu when clicking a link
         document.querySelectorAll('.navbar-menu a').forEach(link => {
             link.addEventListener('click', () => {
                 const menu = document.getElementById('navMenu');
                 menu.classList.remove('show');
             });
         });
+
+        // Toggle Theme
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('themeIcon');
+            
+            if (body.classList.contains('theme-dark')) {
+                body.classList.remove('theme-dark');
+                body.classList.add('theme-light');
+                icon.className = 'fas fa-sun';
+            } else {
+                body.classList.remove('theme-light');
+                body.classList.add('theme-dark');
+                icon.className = 'fas fa-moon';
+            }
+        }
 
         // Navbar scroll effect
         window.addEventListener('scroll', () => {
@@ -1233,7 +1349,7 @@
             }
         });
 
-        // Smooth scroll for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1255,7 +1371,6 @@
             let current = '';
             sections.forEach(section => {
                 const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
                 if (window.scrollY >= sectionTop - 200) {
                     current = section.getAttribute('id');
                 }
@@ -1269,24 +1384,7 @@
             });
         });
 
-        // Create floating particles
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            for (let i = 0; i < 20; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.width = `${Math.random() * 10 + 5}px`;
-                particle.style.height = particle.style.width;
-                particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
-                particle.style.animationDelay = `${Math.random() * 4}s`;
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                particlesContainer.appendChild(particle);
-            }
-        }
-
-        // Open enquiry with pre-filled product
+        // Open enquiry
         function openEnquiry(productName) {
             document.getElementById('product').value = productName;
             document.getElementById('enquiry').scrollIntoView({
@@ -1303,7 +1401,7 @@
             alert(`Product Details:\n\n${name}\n\nCategory: ${category}\n\n${description}\n\nFeatures:\n• 100% Premium Cotton\n• Unique Design\n• Available in multiple sizes\n• Machine washable\n• Color fast\n\nFor more information, please make an enquiry.`);
         }
 
-        // Submit enquiry form
+        // Submit enquiry
         function submitEnquiry(event) {
             event.preventDefault();
             
@@ -1350,28 +1448,13 @@
             }, 5000);
 
             console.log('Enquiry Submitted:', formData);
-            console.log('Total Enquiries:', enquiries.length);
         }
 
-        // Initialize on page load
+        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             generateProducts();
-            createParticles();
             console.log('Al-Zay Thrift Studio - Website Loaded Successfully');
-            console.log('Total Products:', products.length);
         });
-
-        // Prevent form double submission
-        let isSubmitting = false;
-        const originalSubmit = submitEnquiry;
-        submitEnquiry = function(event) {
-            if (isSubmitting) return;
-            isSubmitting = true;
-            originalSubmit(event);
-            setTimeout(() => {
-                isSubmitting = false;
-            }, 2000);
-        };
     </script>
 </body>
 </html>
