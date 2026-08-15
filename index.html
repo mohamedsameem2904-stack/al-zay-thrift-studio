@@ -17,14 +17,10 @@
             --color-accent: #d4ff3f;
             --color-accent-dark: #b8e62e;
             --color-accent-glow: rgba(212, 255, 63, 0.3);
-            --color-orange: #ff6b35;
-            --color-purple: #9b59b6;
-            --color-blue: #3498db;
             --font-display: 'Syne', sans-serif;
             --font-body: 'Space Grotesk', sans-serif;
         }
 
-        /* Dark theme (default) */
         .theme-dark {
             --color-bg: #0a0a0a;
             --color-surface: #141414;
@@ -34,7 +30,6 @@
             --color-text-muted: #888888;
         }
 
-        /* Light theme */
         .theme-light {
             --color-bg: #f5f5f5;
             --color-surface: #ffffff;
@@ -63,7 +58,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
         }
@@ -77,7 +71,6 @@
             border-radius: 5px;
         }
 
-        /* Theme Toggle Button */
         .theme-toggle {
             position: fixed;
             bottom: 2rem;
@@ -103,7 +96,6 @@
             box-shadow: 0 6px 20px var(--color-accent-glow);
         }
 
-        /* Running Ticker */
         .ticker-wrapper {
             background: var(--color-accent);
             color: var(--color-bg);
@@ -132,7 +124,6 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Welcome Modal - Modern Clean Design */
         .welcome-modal {
             position: fixed;
             top: 0;
@@ -226,7 +217,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Navigation */
         .navbar {
             position: sticky;
             top: 0;
@@ -312,7 +302,6 @@
             cursor: pointer;
         }
 
-        /* Hero Section with Grid Animation */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -427,7 +416,6 @@
             transform: translateY(-3px);
         }
 
-        /* Products Section */
         .products {
             padding: 3rem 1rem;
             background: var(--color-surface);
@@ -565,8 +553,8 @@
 
         .btn-enquire {
             flex: 1;
-            background: var(--color-accent);
-            color: var(--color-bg);
+            background: #25D366;
+            color: white;
             border: none;
             padding: 0.5rem;
             font-weight: 600;
@@ -576,10 +564,19 @@
             letter-spacing: 0.5px;
             font-size: 0.65rem;
             border-radius: 3px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.3rem;
         }
 
         .btn-enquire:hover {
-            background: var(--color-accent-dark);
+            background: #128C7E;
+        }
+
+        .btn-enquire i {
+            font-size: 0.8rem;
         }
 
         .btn-view {
@@ -599,7 +596,6 @@
             color: var(--color-accent);
         }
 
-        /* About Section */
         .about {
             padding: 4rem 1.5rem;
             background: var(--color-bg);
@@ -628,6 +624,22 @@
             font-size: 0.9rem;
         }
 
+        .about-image {
+            width: 100%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--color-accent);
+            box-shadow: 0 10px 30px var(--color-accent-glow);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .about-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -651,7 +663,6 @@
             color: var(--color-text-muted);
         }
 
-        /* Enquiry Section */
         .enquiry {
             padding: 4rem 1.5rem;
             background: var(--color-surface);
@@ -752,7 +763,6 @@
             animation: slideDown 0.5s ease;
         }
 
-        /* Contact Section */
         .contact {
             padding: 3rem 1.5rem;
             background: var(--color-bg);
@@ -796,7 +806,6 @@
             font-size: 0.85rem;
         }
 
-        /* Footer */
         .footer {
             background: var(--color-surface);
             padding: 2.5rem 1.5rem;
@@ -830,6 +839,7 @@
             text-decoration: none;
             transition: color 0.3s;
             font-size: 0.85rem;
+            cursor: pointer;
         }
 
         .footer-column ul a:hover {
@@ -861,7 +871,79 @@
             font-size: 0.85rem;
         }
 
-        /* Responsive Design */
+        /* Modal for FAQ and Privacy Policy */
+        .info-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10002;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-modal.show {
+            display: flex;
+        }
+
+        .info-modal-content {
+            background: var(--color-card);
+            border: 1px solid var(--color-accent);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .info-modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            color: var(--color-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .info-modal-content h2 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--color-accent);
+        }
+
+        .info-modal-content h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .info-modal-content p {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+        }
+
+        .info-modal-content ul {
+            list-style: disc;
+            padding-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-modal-content ul li {
+            color: var(--color-text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
         @media (max-width: 768px) {
             .navbar-menu {
                 display: none;
@@ -1134,8 +1216,8 @@
                 </div>
             </div>
             <div style="display: flex; align-items: center; justify-content: center;">
-                <div style="width: 100%; max-width: 400px; aspect-ratio: 1; background: var(--color-card); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--color-accent);">
-                    <i class="fas fa-tshirt" style="font-size: 12rem; color: var(--color-accent); opacity: 0.5;"></i>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=400&fit=crop" alt="Al-Zay Thrift Studio - Premium T-Shirts Store" onerror="this.src='https://via.placeholder.com/400x400/1e1e1e/d4ff3f?text=AL-ZAY+STUDIO'">
                 </div>
             </div>
         </div>
@@ -1269,8 +1351,8 @@
                 <ul>
                     <li><a href="#contact">Contact Us</a></li>
                     <li><a href="#enquiry">Make Enquiry</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a onclick="showFAQ()">FAQs</a></li>
+                    <li><a onclick="showPrivacyPolicy()">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
@@ -1279,13 +1361,25 @@
         </div>
     </footer>
 
+    <!-- Info Modal for FAQ and Privacy Policy -->
+    <div class="info-modal" id="infoModal">
+        <div class="info-modal-content">
+            <button class="info-modal-close" onclick="closeInfoModal()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div id="infoModalBody">
+                <!-- Content will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+
     <!-- Theme Toggle Button -->
     <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">
         <i class="fas fa-moon" id="themeIcon"></i>
     </button>
 
     <script>
-        // Product Data with exact images (using placeholder images from Unsplash)
+        // Product Data with exact images
         const products = [
             { name: 'Urban Abstract Print Tee', category: 'Limited Edition', image: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&h=400&fit=crop', description: 'Modern abstract design' },
             { name: 'Geometric Pattern Tee', category: 'Best Seller', image: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=400&h=400&fit=crop', description: 'Bold geometric patterns' },
@@ -1308,6 +1402,9 @@
             { name: 'Gamer Life Tee', category: 'Gaming', image: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400&h=400&fit=crop', description: 'Gaming inspired designs' },
             { name: 'Fitness Motivation Tee', category: 'Athletic', image: 'https://images.unsplash.com/photo-1533055640609-24b498dfd74c?w=400&h=400&fit=crop', description: 'Motivational designs' }
         ];
+
+        // WhatsApp number
+        const whatsappNumber = '917094710286';
 
         // Generate Products
         function generateProducts() {
@@ -1334,7 +1431,9 @@
                         <h3 class="product-name">${product.name}</h3>
                         <p class="product-description">${product.description}</p>
                         <div class="product-actions">
-                            <button class="btn-enquire" onclick="openEnquiry('${product.name}')">Enquire</button>
+                            <a href="https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hey Al Zay, I have an enquiry about ' + product.name)}" class="btn-enquire" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Enquire
+                            </a>
                             <button class="btn-view" onclick="viewProduct('${product.name}', '${product.category}', '${product.description}')">Details</button>
                         </div>
                     </div>
@@ -1432,16 +1531,11 @@
             });
         });
 
-        // Open enquiry
+        // Open enquiry (now redirects to WhatsApp)
         function openEnquiry(productName) {
-            document.getElementById('product').value = productName;
-            document.getElementById('enquiry').scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            setTimeout(() => {
-                document.getElementById('fullName').focus();
-            }, 1000);
+            const message = `Hey Al Zay, I have an enquiry about ${productName}`;
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
         }
 
         // View product details
@@ -1449,7 +1543,7 @@
             alert(`Product Details:\n\n${name}\n\nCategory: ${category}\n\n${description}\n\nFeatures:\n• 100% Premium Cotton\n• Unique Design\n• Available in multiple sizes\n• Machine washable\n• Color fast\n\nFor more information, please make an enquiry.`);
         }
 
-        // Submit enquiry
+        // Submit enquiry form
         function submitEnquiry(event) {
             event.preventDefault();
             
@@ -1479,6 +1573,13 @@
                 return;
             }
 
+            // Send to WhatsApp
+            const whatsappMessage = `Hey Al Zay, I have an enquiry!\n\nName: ${formData.fullName}\nEmail: ${formData.email}\nPhone: ${formData.phone}\nProduct: ${formData.product}\nSize: ${formData.size || 'Not specified'}\nMessage: ${formData.message}`;
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            
+            // Open WhatsApp
+            window.open(whatsappUrl, '_blank');
+
             const enquiries = JSON.parse(localStorage.getItem('enquiries') || '[]');
             enquiries.push({
                 ...formData,
@@ -1497,6 +1598,100 @@
 
             console.log('Enquiry Submitted:', formData);
         }
+
+        // Show FAQ Modal
+        function showFAQ() {
+            const modal = document.getElementById('infoModal');
+            const modalBody = document.getElementById('infoModalBody');
+            
+            modalBody.innerHTML = `
+                <h2>Frequently Asked Questions</h2>
+                
+                <h3>1. What sizes are available?</h3>
+                <p>We offer sizes from S to XXL. Each product page lists available sizes.</p>
+                
+                <h3>2. How do I make an enquiry?</h3>
+                <p>You can click the "Enquire" button on any product to contact us directly via WhatsApp, or use the enquiry form.</p>
+                
+                <h3>3. What is the price range?</h3>
+                <p>Our premium t-shirts range from ₹499 to ₹1499 depending on the design and collection.</p>
+                
+                <h3>4. Do you offer custom designs?</h3>
+                <p>Yes! We offer custom design services. Contact us with your ideas and we'll work with you.</p>
+                
+                <h3>5. What payment methods do you accept?</h3>
+                <p>We accept UPI, bank transfer, and cash on delivery (COD) for local orders.</p>
+                
+                <h3>6. How long does delivery take?</h3>
+                <p>Delivery typically takes 3-7 business days depending on your location.</p>
+                
+                <h3>7. Can I return or exchange?</h3>
+                <p>Yes, we offer 7-day return and exchange policy for unused items with tags intact.</p>
+                
+                <h3>8. Are the t-shirts machine washable?</h3>
+                <p>Yes, all our t-shirts are machine washable. We recommend cold wash and air dry for best results.</p>
+            `;
+            
+            modal.classList.add('show');
+        }
+
+        // Show Privacy Policy Modal
+        function showPrivacyPolicy() {
+            const modal = document.getElementById('infoModal');
+            const modalBody = document.getElementById('infoModalBody');
+            
+            modalBody.innerHTML = `
+                <h2>Privacy Policy</h2>
+                
+                <p>Last updated: January 2025</p>
+                
+                <h3>Information We Collect</h3>
+                <p>We collect information you provide directly to us when making an enquiry, including:</p>
+                <ul>
+                    <li>Name and contact information (email, phone number)</li>
+                    <li>Product preferences and enquiry details</li>
+                    <li>Communication history with us</li>
+                </ul>
+                
+                <h3>How We Use Your Information</h3>
+                <p>We use the information we collect to:</p>
+                <ul>
+                    <li>Respond to your enquiries and provide customer service</li>
+                    <li>Process and fulfill your orders</li>
+                    <li>Send you updates about our products and promotions</li>
+                    <li>Improve our products and services</li>
+                </ul>
+                
+                <h3>Information Sharing</h3>
+                <p>We do not sell, trade, or rent your personal information to third parties. We may share information with service providers who assist us in operating our business.</p>
+                
+                <h3>Data Security</h3>
+                <p>We implement reasonable security measures to protect your personal information from unauthorized access, alteration, or disclosure.</p>
+                
+                <h3>Your Rights</h3>
+                <p>You have the right to access, correct, or delete your personal information. Contact us at info@alzaystudio.com for any privacy-related requests.</p>
+                
+                <h3>Contact Us</h3>
+                <p>If you have questions about this Privacy Policy, contact us at:</p>
+                <p>Email: info@alzaystudio.com</p>
+                <p>Phone: +91 70947 10286</p>
+            `;
+            
+            modal.classList.add('show');
+        }
+
+        // Close Info Modal
+        function closeInfoModal() {
+            const modal = document.getElementById('infoModal');
+            modal.classList.remove('show');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('infoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeInfoModal();
+            }
+        });
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
