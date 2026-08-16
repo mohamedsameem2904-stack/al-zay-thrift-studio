@@ -128,66 +128,134 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(26,26,26,0.98);
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 50%, #1a1a1a 100%);
             z-index: 10000;
             display: flex;
             align-items: center;
             justify-content: center;
             animation: fadeIn 0.6s ease;
         }
+        .welcome-modal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop') center/cover no-repeat;
+            opacity: 0.1;
+            pointer-events: none;
+        }
         .welcome-modal.hidden {
             display: none;
         }
         .welcome-content {
             text-align: center;
-            padding: 3rem;
-            max-width: 650px;
+            padding: 4rem 3rem;
+            max-width: 700px;
             position: relative;
+            z-index: 1;
+            background: rgba(26,26,26,0.85);
+            border: 1px solid rgba(200,169,126,0.3);
+            border-radius: 4px;
+            backdrop-filter: blur(10px);
         }
         .welcome-badge {
             display: inline-block;
             border: 2px solid var(--accent-bronze);
             color: var(--accent-bronze);
-            padding: 0.4rem 1.5rem;
+            padding: 0.5rem 2rem;
             font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             text-transform: uppercase;
             margin-bottom: 2rem;
             animation: fadeInUp 0.8s ease;
+            background: rgba(200,169,126,0.1);
         }
         .welcome-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
             margin-bottom: 1rem;
             color: var(--accent-bronze);
             animation: fadeInUp 1s ease;
         }
+        .welcome-title span {
+            display: block;
+            font-size: 2.5rem;
+            font-style: italic;
+            color: #f5f0e8;
+        }
         .welcome-subtitle {
             font-size: 1.1rem;
             color: #b8b0a4;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             animation: fadeInUp 1.2s ease;
             font-style: italic;
+            letter-spacing: 1px;
+        }
+        .welcome-divider {
+            width: 100px;
+            height: 1px;
+            background: var(--accent-bronze);
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1.3s ease;
         }
         .welcome-btn {
-            background: transparent;
-            color: var(--accent-bronze);
+            background: var(--accent-bronze);
+            color: #1a1a1a;
             border: 2px solid var(--accent-bronze);
-            padding: 0.9rem 2.5rem;
+            padding: 1rem 3rem;
             font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 2px;
+            font-weight: 700;
+            letter-spacing: 3px;
             text-transform: uppercase;
             cursor: pointer;
             transition: var(--transition-smooth);
             animation: fadeInUp 1.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        .welcome-btn:hover::before {
+            left: 100%;
         }
         .welcome-btn:hover {
-            background: var(--accent-bronze);
-            color: white;
+            background: var(--accent-bronze-dark);
+            border-color: var(--accent-bronze-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(200,169,126,0.4);
+        }
+        .welcome-features {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            animation: fadeInUp 1.6s ease;
+        }
+        .welcome-feature {
+            color: #b8b0a4;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .welcome-feature i {
+            color: var(--accent-bronze);
+            font-size: 0.8rem;
         }
 
         @keyframes fadeInUp {
@@ -282,7 +350,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            background: var(--bg-primary);
+            background: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop') center/cover no-repeat;
             padding: 4rem 2rem;
         }
         .hero::before {
@@ -292,15 +360,23 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: 
-                linear-gradient(135deg, transparent 0%, transparent 50%, rgba(200,169,126,0.05) 50%, transparent 100%),
-                linear-gradient(45deg, rgba(139,38,53,0.03) 0%, transparent 70%);
+            background: linear-gradient(135deg, rgba(26,26,26,0.85) 0%, rgba(26,26,26,0.6) 50%, rgba(26,26,26,0.85) 100%);
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
         }
         .hero-content {
             text-align: center;
             position: relative;
             z-index: 2;
             max-width: 800px;
+            animation: fadeInUp 1s ease;
         }
         .hero-badge {
             display: inline-block;
@@ -312,7 +388,9 @@
             margin-bottom: 2rem;
             padding-bottom: 0.5rem;
             border-bottom: 2px solid var(--accent-bronze);
-            animation: fadeInUp 1s ease;
+            background: rgba(200,169,126,0.1);
+            padding: 0.5rem 1.5rem;
+            backdrop-filter: blur(5px);
         }
         .hero-title {
             font-family: 'Playfair Display', serif;
@@ -320,7 +398,8 @@
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 1.2s ease;
+            color: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
         }
         .hero-title em {
             color: var(--accent-bronze);
@@ -328,19 +407,18 @@
         }
         .hero-description {
             font-size: 1.1rem;
-            color: var(--text-secondary);
+            color: #e0d8cc;
             margin-bottom: 2.5rem;
             line-height: 1.8;
-            animation: fadeInUp 1.4s ease;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
         .hero-cta {
             display: flex;
             gap: 1rem;
             justify-content: center;
-            animation: fadeInUp 1.6s ease;
         }
         .btn {
             padding: 0.9rem 2rem;
@@ -352,6 +430,7 @@
             cursor: pointer;
             transition: var(--transition-smooth);
             border: 2px solid transparent;
+            backdrop-filter: blur(5px);
         }
         .btn-primary {
             background: var(--accent-bronze);
@@ -364,12 +443,12 @@
         }
         .btn-outline {
             background: transparent;
-            color: var(--text-primary);
-            border-color: var(--border-medium);
+            color: #ffffff;
+            border-color: var(--accent-bronze);
         }
         .btn-outline:hover {
-            border-color: var(--accent-bronze);
-            color: var(--accent-bronze);
+            background: var(--accent-bronze);
+            color: white;
         }
 
         .subscribe-section {
@@ -613,6 +692,7 @@
             overflow: hidden;
             border: 8px solid var(--bg-card);
             box-shadow: var(--shadow-soft);
+            background: url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop') center/cover no-repeat;
         }
         .about-image img {
             width: 100%;
@@ -887,6 +967,12 @@
             .subscribe-form {
                 flex-direction: column;
             }
+            .welcome-title {
+                font-size: 3rem;
+            }
+            .welcome-title span {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
@@ -899,10 +985,16 @@
 
     <div class="welcome-modal" id="welcomeModal">
         <div class="welcome-content">
-            <div class="welcome-badge">AL-ZAY STUDIO</div>
-            <h1 class="welcome-title">Timeless<br>Elegance</h1>
+            <div class="welcome-badge">✦ AL-ZAY STUDIO ✦</div>
+            <h1 class="welcome-title">Welcome to<br><span>Timeless Elegance</span></h1>
+            <div class="welcome-divider"></div>
             <p class="welcome-subtitle">Discover refined menswear for the discerning gentleman</p>
             <button class="welcome-btn" onclick="closeWelcome()">Enter Collection</button>
+            <div class="welcome-features">
+                <div class="welcome-feature"><i class="fas fa-check-circle"></i> Premium Quality</div>
+                <div class="welcome-feature"><i class="fas fa-check-circle"></i> Unique Designs</div>
+                <div class="welcome-feature"><i class="fas fa-check-circle"></i> Limited Edition</div>
+            </div>
         </div>
     </div>
 
@@ -989,7 +1081,7 @@
             </div>
             <div style="display: flex; align-items: center; justify-content: center;">
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop" alt="Al-Zay Thrift Studio - Premium T-Shirts" onerror="this.src='https://via.placeholder.com/500x500/2d2d2d/c8a97e?text=AL-ZAY+STUDIO'">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop" alt="Al-Zay Studio - Design Studio" onerror="this.src='https://via.placeholder.com/500x500/2d2d2d/c8a97e?text=AL-ZAY+STUDIO'">
                 </div>
             </div>
         </div>
