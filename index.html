@@ -1178,6 +1178,7 @@
             }
         }
 
+        /* Mobile adjustments - 2 columns for products */
         @media (max-width: 640px) {
             .navbar-toggle {
                 display: block;
@@ -1216,6 +1217,31 @@
             }
             .footer-bottom {
                 font-size: 0.75rem;
+            }
+            
+            /* Force 2 columns for products on mobile */
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.8rem;
+            }
+            .product-image {
+                height: 180px;
+            }
+            .product-info {
+                padding: 0.8rem;
+            }
+            .product-name {
+                font-size: 0.9rem;
+            }
+            .product-description {
+                font-size: 0.7rem;
+            }
+            .product-category {
+                font-size: 0.6rem;
+            }
+            .btn-enquire, .btn-view {
+                font-size: 0.6rem;
+                padding: 0.5rem;
             }
         }
     </style>
